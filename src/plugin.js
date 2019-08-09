@@ -1,7 +1,7 @@
 import http from './http';
 
 let installBaseProperties = Vue => {
-    Vue.prototyoe.$http = http;
+    Vue.prototype.$http = http;
 };
 
 let installUiComponents = Vue => {};

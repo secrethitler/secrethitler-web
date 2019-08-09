@@ -15,6 +15,11 @@ let routes = [
         component: require('./views/GameCreate.vue').default,
     },
     {
+        path: '/game/join',
+        name: 'game.join',
+        component: require('./views/GameJoin.vue').default,
+    },
+    {
         path: '/game/:id',
         name: 'game',
         component: require('./views/Game.vue').default,
