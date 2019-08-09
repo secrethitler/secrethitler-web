@@ -1,30 +1,30 @@
 {
-  "name": "secret-hitler",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
-  },
-  "dependencies": {
-    "@fullhuman/postcss-purgecss": "^1.2.0",
-    "core-js": "^2.6.5",
-    "register-service-worker": "^1.6.2",
-    "tailwindcss": "^1.0.4",
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-pwa": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
-    "sass": "^1.18.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "name": "secret-hitler",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build"
+    },
+    "dependencies": {
+        "@fullhuman/postcss-purgecss": "^1.2",
+        "core-js": "^3.2",
+        "register-service-worker": "^1.6",
+        "tailwindcss": "^1.1",
+        "vue": "^2.6",
+        "vue-router": "^3.1",
+        "vuex": "^3.1"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^3.9",
+        "@vue/cli-plugin-pwa": "^3.9",
+        "@vue/cli-service": "^3.9",
+        "sass": "^1.18",
+        "sass-loader": "^7.1",
+        "vue-template-compiler": "^2.6"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }
