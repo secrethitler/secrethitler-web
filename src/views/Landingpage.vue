@@ -1,28 +1,32 @@
 <template>
     <div>
-
         <div class="border-b-4 border-red-800 bg-red-600 text-yellow-200">
             <div class="container">
-                <div class="flex flex-wrap items-center relative lg:w-3/4 mx-auto px-4">
-                    <div class="w-full lg:w-1/2 py-16">
+                <div class="flex flex-wrap items-center relative lg:w-3/4 mx-auto lg:px-4">
+                    <div class="w-full lg:w-1/2 py-6 lg:pb-16 lg:pt-12">
                         <h1
-                            class="font-old font-bold uppercase tracking-widest text-6xl whitespace-no-wrap"
+                            class="font-old font-bold uppercase tracking-widest text-center lg:text-left mb-4 lg:mb-0 text-5xl lg:text-6xl whitespace-no-wrap"
                         >Secret Hitler</h1>
                         <div class="text-white font-serif text-xl mb-12">
                             <p
                                 class="mb-4"
                             >Secret Hitler is a social deduction game for 5-10 people about finding and stopping the Secret Hitler.</p>
                         </div>
-                        <div class="flex">
-                            <router-link :to="{ name: 'game.join' }" class="btn mr-6">Join Game</router-link>
+                        <div class="flex flex-wrap">
+                            <router-link
+                                :to="{ name: 'game.join' }"
+                                class="btn lg:mr-6 w-full lg:w-auto mb-4 lg:mb-0"
+                            >Join Game</router-link>
 
                             <router-link
                                 :to="{ name: 'game.create' }"
-                                class="btn btn--secondary"
-                            >Create a new Game</router-link>
+                                class="btn btn--secondary btn--fancy w-full lg:w-auto"
+                            >
+                                <span>Create a new Game</span>
+                            </router-link>
                         </div>
                     </div>
-                    <div class="w-full lg:w-1/2 hidden lg:flex justify-center relative py-4">
+                    <div class="w-full lg:w-1/2 flex justify-center relative py-4">
                         <img
                             src="../assets/landingpage/illustration.png"
                             alt="Illustration"
@@ -33,21 +37,74 @@
             </div>
         </div>
 
-        <div class="bg-yellow-100">
+        <div class="bg-yellow-100 border-b-2 border-yellow-300">
             <div class="container flex justify-center">
                 <div class="flex flex-wrap relative lg:w-3/4 -mx-4">
-                    <div class="w-full lg:w-1/2 pt-12 pxl-4 pr-12">
-                        <img src="../assets/landingpage/liberal.png" alt="">
+                    <div class="w-full lg:w-1/2 pt-12 lg:px-4 lg:pr-20">
+                        <div>
+                            <img src="../assets/landingpage/liberal.png" alt />
+                        </div>
+                        <div>
+                            <blockquote>
+                                "We are gonna get dem nazis."
+                                <br />
+                                <span>Josef Eisenhauer</span>
+                            </blockquote>
+                        </div>
                     </div>
                     <div class="w-full lg:w-1/2 py-12 text-gray-700 font-serif text-lg px-4">
+                        <h3 class="font-old text-4xl mb-4">How do you play?</h3>
                         <p
                             class="mb-4"
                         >Players are secretly divided into two teams: the liberals, who have a majority, and the fascists, who are hidden to everyone but each other. If the liberals can learn to trust each other, they have enough votes to control the elections and save the day. But the fascists will say whatever it takes to get elected, advance their agenda, and win the game.</p>
-                        <p
-                            class="mb-4"
-                        >The standard edition is identical to the edition of Secret Hitler that shipped to Kickstarter backers in 2016, including foil inlays on the boards and wooden placards for the Chancellor and President.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="container pt-8 lg:pt-12 pb-4">
+            <div class="-mx-4 mb-8 flex justify-center items-center">
+                <div class="px-4">
+                    <img src="../assets/role_fascist.jpg" alt="Fascist" />
+                </div>
+                <div class="px-4 font-old text-6xl">VS</div>
+                <div class="px-4">
+                    <img src="../assets/role_liberal.jpg" alt="Fascist" />
+                </div>
+            </div>
+
+            <div class="flex justify-around -mx-4 py-4">
+                <div class="px-4">
+                    <blockquote>
+                        "Liberals make me sick!"
+                        <br />
+                        <span>Adolf Hitler, probably</span>
+                    </blockquote>
+                </div>
+                <div class="px-4">
+                    <blockquote>
+                        "This is so much fun!"
+                        <br />
+                        <span>Tim</span>
+                    </blockquote>
+                </div>
+                <div class="px-4">
+                    <blockquote>
+                        "Why are we yelling?"
+                        <br />
+                        <span>Some dude getting yelled at</span>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div class="flex justify-center py-8">
+                <router-link :to="{ name: 'game.join' }" class="btn btn--red mr-6">Join a Game</router-link>
+            </div>
+        </div>
+
+        <div class="bg-yellow-100 border-b-2 border-yellow-300">
+            <div class="container py-12">
+                <h3 class="text-center font-old text-6xl">Rules</h3>
             </div>
         </div>
     </div>
@@ -70,15 +127,63 @@ h1 {
     max-width: 12rem;
 }
 
+blockquote {
+    @apply font-serif italic text-xl text-gray-600 text-center p-4;
+
+    span {
+        @apply ml-20 text-red-700 text-base;
+
+        &::before {
+            content: "— ";
+        }
+    }
+}
+
 .btn {
-    @apply bg-white font-sans border-4 border-white text-red-600 uppercase font-bold tracking-wider px-6 py-3 leading-none text-lg;
-    transition: all 0.2s ease;
+    @apply bg-white font-sans border-4 border-white text-red-600 uppercase font-bold tracking-wider p-3 leading-none text-center;
+    transition: all 0.3s ease;
+
+    @screen lg {
+        @apply text-lg px-6 py-4;
+    }
 
     &:hover {
+        @apply border-yellow-200 bg-yellow-200;
+    }
+
+    &.btn--red {
+        @apply text-white bg-red-600 border-red-600;
+
+        &:hover {
+            @apply bg-red-800 border-red-800;
+        }
     }
 
     &.btn--secondary {
         @apply bg-transparent text-white;
+    }
+
+    &.btn--fancy {
+        @apply relative overflow-hidden;
+        &::before {
+            content: '';
+            @apply h-full w-full absolute inset-0 bg-white z-0;
+            transition: all 0.3s ease;
+            transform: translateX(-100%);
+        }
+
+        span {
+            @apply relative;
+            z-index: 2;
+        }
+
+        &:hover {
+            @apply text-red-600;
+            &::before {
+                @apply bg-yellow-200;
+                transform: translate(0);
+            }
+        }
     }
 }
 </style>
