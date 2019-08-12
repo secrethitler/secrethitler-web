@@ -11,6 +11,10 @@ body {
     @apply antialiased bg-gray-100 font-sans;
 }
 
+::selection {
+    @apply bg-red-900 text-white;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
