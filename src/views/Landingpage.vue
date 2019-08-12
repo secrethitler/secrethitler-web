@@ -106,7 +106,7 @@
             </div>
 
             <div class="flex justify-center py-8">
-                <router-link :to="{ name: 'game.join' }" class="btn btn--red mr-6">Join a Game</router-link>
+                <router-link :to="{ name: 'game.join' }" class="btn btn--red">Join a Game</router-link>
             </div>
         </div>
 
