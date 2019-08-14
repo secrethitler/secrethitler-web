@@ -25,6 +25,11 @@ let routes = [
         component: require('./views/Game.vue').default,
         children: [
             {
+                path: 'lobby',
+                name: 'lobby',
+                component: require('./views/GameLobby.vue').default
+            },
+            {
                 path: 'president-elect',
                 name: 'president-elect',
                 component: require('./views/PresidentElect.vue').default,
@@ -36,6 +41,10 @@ let routes = [
 let router = new Router({
     mode: 'history',
     routes,
+});
+
+router.afterEach((to, from) => {
+    // 
 });
 
 export default router;

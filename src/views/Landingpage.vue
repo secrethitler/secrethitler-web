@@ -57,7 +57,7 @@
                         <p
                             class="mb-6"
                         >Players are secretly divided into two teams: the liberals, who have a majority, and the fascists, who are hidden to everyone but each other. If the liberals can learn to trust each other, they have enough votes to control the elections and save the day. But the fascists will say whatever it takes to get elected, advance their agenda, and win the game.</p>
-                        <h3 class="font-old text-3xl mb-8">Will you be able to catch secret hitler?</h3>
+                        <h3 class="font-old text-3xl mb-8">Do you have friends?</h3>
                         <router-link
                             :to="{ name: 'game.create' }"
                             class="btn btn--red"
@@ -71,7 +71,7 @@
 
         <div class="container pt-8 lg:pt-12 pb-4">
             <h3 class="px-4 mb-8 font-old text-5xl text-center">The Parties</h3>
-            <div class="-mx-4 mb-8 flex justify-center items-center">
+            <div class="-mx-4 mb-12 flex justify-center items-center">
                 <div class="px-4">
                     <img src="../assets/role_fascist.jpg" alt="Fascist" />
                 </div>
@@ -80,6 +80,8 @@
                     <img src="../assets/role_liberal.jpg" alt="Fascist" />
                 </div>
             </div>
+
+            <h3 class="px-4 mb-8 font-old text-5xl text-center">What people say</h3>
 
             <div class="flex flex-wrap justify-around -mx-4 py-4">
                 <div class="px-4 mb-4 w-full lg:w-auto">
@@ -101,6 +103,13 @@
                         "Why are you yelling at me?"
                         <br />
                         <span>Some dude getting yelled at</span>
+                    </blockquote>
+                </div>
+                <div class="px-4 mb-4 w-full lg:w-auto">
+                    <blockquote>
+                        "Fascism isn't funny..."
+                        <br />
+                        <span>Yes it is</span>
                     </blockquote>
                 </div>
             </div>
@@ -194,54 +203,6 @@ blockquote {
 
         &::before {
             content: '— ';
-        }
-    }
-}
-
-.btn {
-    @apply bg-white font-sans border-4 border-white text-red-600 uppercase font-bold tracking-wider py-3 px-5 leading-none text-center;
-    transition: all 0.3s ease;
-
-    @screen lg {
-        @apply text-lg px-6 py-4;
-    }
-
-    &:hover {
-        @apply border-yellow-200 bg-yellow-200;
-    }
-
-    &.btn--red {
-        @apply text-white bg-red-600 border-red-600;
-
-        &:hover {
-            @apply bg-red-800 border-red-800;
-        }
-    }
-
-    &.btn--secondary {
-        @apply bg-transparent text-white;
-    }
-
-    &.btn--fancy {
-        @apply relative overflow-hidden;
-        &::before {
-            content: '';
-            @apply h-full w-full absolute inset-0 bg-white z-0;
-            transition: all 0.3s ease;
-            transform: translateX(-100%);
-        }
-
-        span {
-            @apply relative;
-            z-index: 2;
-        }
-
-        &:hover {
-            @apply text-red-600;
-            &::before {
-                @apply bg-yellow-200;
-                transform: translate(0);
-            }
         }
     }
 }

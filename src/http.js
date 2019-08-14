@@ -2,7 +2,10 @@ import axios from 'axios';
 import nprogress from 'nprogress';
 
 let instance = axios.create({
-    baseUrl: 'https://secret-hitler-api.com/api',
+    baseUrl: 'http://secrethitler.tk/api',
+    headers: {
+        'Content-Type': 'application/json'
+    }
 });
 
 instance.interceptors.request.use(config => {
@@ -16,6 +19,7 @@ instance.interceptors.response.use(
         return response;
     },
     error => {
+        nprogress.done();
         return Promise.reject(error);
     }
 );
