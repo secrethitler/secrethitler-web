@@ -9,6 +9,7 @@ let installBaseProperties = Vue => {
 let installUiComponents = Vue => {
     Vue.component('ui-label', require('./components/ui/Label.vue').default);
     Vue.component('ui-input', require('./components/ui/Input.vue').default);
+    Vue.component('modal', require('./components/ui/Modal.vue').default);
 };
 
 export default {

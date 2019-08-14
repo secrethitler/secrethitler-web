@@ -81,6 +81,10 @@
                 </div>
             </div>
 
+            <div class="py-4 mb-4 flex justify-center">
+                <img src="../assets/landingpage/trenner.png" alt="">
+            </div>
+
             <h3 class="px-4 mb-8 font-old text-5xl text-center">What people say</h3>
 
             <div class="flex flex-wrap justify-around -mx-4 py-4">

@@ -2,7 +2,7 @@ import axios from 'axios';
 import nprogress from 'nprogress';
 
 let instance = axios.create({
-    baseUrl: 'http://secrethitler.tk/api',
+    baseURL: 'http://secrethitler.tk/api',
     headers: {
         'Content-Type': 'application/json'
     }
