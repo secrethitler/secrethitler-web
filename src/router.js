@@ -10,6 +10,10 @@ let routes = [
         component: require('./views/Landingpage.vue').default,
     },
     {
+        path: '/game',
+        redirect: '/game/join'
+    },
+    {
         path: '/game/create',
         name: 'game.create',
         component: require('./views/GameCreate.vue').default,
@@ -28,11 +32,6 @@ let routes = [
                 path: 'lobby',
                 name: 'lobby',
                 component: require('./views/GameLobby.vue').default
-            },
-            {
-                path: 'president-elect',
-                name: 'president-elect',
-                component: require('./views/PresidentElect.vue').default,
             },
         ],
     },

@@ -1,5 +1,19 @@
 import http from './http';
 import pusher from './pusher';
+import nprogress from 'nprogress';
+
+let installBaseMixin = Vue => {
+    Vue.mixin({
+        methods: {
+            startLoading() {
+                nprogress.start();
+            },
+            stopLoading() {
+                nprogress.done();
+            },
+        },
+    });
+};
 
 let installBaseProperties = Vue => {
     Vue.prototype.$http = http;
@@ -14,6 +28,7 @@ let installUiComponents = Vue => {
 
 export default {
     install(Vue) {
+        installBaseMixin(Vue);
         installBaseProperties(Vue);
         installUiComponents(Vue);
     },

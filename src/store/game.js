@@ -1,0 +1,85 @@
+export default {
+    state: {
+        user_id: null,
+        channel_name: null,
+        active_round: -1,
+        members: [],
+        rounds: [],
+    },
+    mutations: {
+        setChannelName(state, channel_name) {
+            state.channel_name = channel_name;
+        },
+
+        setUserId(state, user_id) {
+            state.user_id = user_id;
+        },
+
+        setMembers(state, members) {
+            state.members = members;
+        },
+
+        setNewRound(state) {
+            state.active_round++;
+            state.rounds.push({
+                president: null,
+                chancellor: null,
+                votes: [],
+                enacted_policy: null,
+            });
+        },
+
+        setNewPresident(state, president_id) {
+            state.rounds[state.active_round].president = president_id;
+        },
+
+        setNominatedChancellor(state, chancellor_id) {
+            state.rounds[state.active_round].chancellor = chancellor_id;
+        },
+
+        addChancellorVote(state, incomingVote) {
+            state.rounds[state.active_round].votes.push(incomingVote);
+        },
+
+        setEnactedPolicy(state, policy) {
+            state.rounds[state.active_round].enacted_policy = policy;
+        },
+
+        resetGame(state) {
+            state.channel_name = null;
+            state.active_round = -1;
+            state.connections = {};
+            state.members = [];
+            state.rounds = [];
+        },
+    },
+    getters: {
+        members(state) {
+            return state.members;
+        },
+        userId(state) {
+            return state.user_id;
+        },
+        rounds(state) {
+            return state.rounds;
+        },
+        president(state) {
+            let members = state.members;
+            if (members.length === 0 || ! state.rounds[state.active_round]) {
+                return null;
+            }
+            let president_id = state.rounds[state.active_round].president;
+
+            return members.find(member => member.user_id === president_id);
+        },
+        chancellor(state) {
+            let members = state.members;
+            if (members.length === 0 || ! state.rounds[state.active_round]) {
+                return null;
+            }
+            let chancellor_id = state.rounds[state.active_round].chancellor;
+
+            return members.find(member => member.user_id === chancellor_id);
+        },
+    },
+};

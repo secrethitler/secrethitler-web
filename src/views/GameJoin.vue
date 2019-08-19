@@ -12,7 +12,7 @@
 
             <div class="flex flex-wrap -mx-4">
                 <div class="px-4 w-full lg:w-1/2 mb-8 lg:order-2">
-                    <form ref="form" action="/join" method="POST" @submit.prevent="join" class="block w-full">
+                    <form ref="form" action="/game/join" method="POST" @submit.prevent="join" class="block w-full">
                         <div class="mb-6">
                             <ui-label for="username">Your Name</ui-label>
                             <ui-input id="username" type="text" name="username" required />
@@ -49,8 +49,9 @@ export default {
 
     methods: {
         join() {
-            this.$http.post('/join', new FormData(this.$refs.form))
+            this.$http.post('/game/join', new FormData(this.$refs.form))
                 .then(res => {
+                    this.$store.commit('setUserId', res.data.user_id);
                     this.$router.push(`/game/${this.lobby}/lobby`);
                 })
                 .catch(err => {

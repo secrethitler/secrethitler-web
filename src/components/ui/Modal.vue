@@ -1,28 +1,40 @@
 <template>
     <transition name="modal">
         <div v-if="open" class="modal" :class="{ 'modal-open': open }">
-            <div ref="modal" class="modal-inner container">
-                <slot></slot>
+            <div ref="modal" class="modal-inner container flex justify-center items-center">
+                <div class="w-full lg:w-1/2">
+                    <slot></slot>
+                </div>
             </div>
         </div>
     </transition>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-    data() {
-        return {
-            open: false,
-        };
+    props: {
+        name: {
+            type: String,
+            required: true
+        }
+    },
+
+    computed: {
+        ...mapGetters(['activeModal']),
+        open() {
+            return this.name === this.activeModal;
+        }
     },
 
     methods: {
         show() {
-            this.open = true;
+            this.$store.commit('setActiveModal', this.name);
             window.addEventListener('click', this.handleClick);
         },
         close() {
-            this.open = false;
+            this.$store.commit('setActiveModal', null);
             window.removeEventListener('click', this.handleClick);
         },
         handleClick(e) {
