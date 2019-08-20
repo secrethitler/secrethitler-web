@@ -14,12 +14,12 @@
                 <div class="px-4 w-full lg:w-1/2 mb-8 lg:order-2">
                     <form ref="form" action="/game/join" method="POST" @submit.prevent="join" class="block w-full">
                         <div class="mb-6">
-                            <ui-label for="username">Your Name</ui-label>
-                            <ui-input id="username" type="text" name="username" required />
+                            <ui-label for="user_name">Your Name</ui-label>
+                            <ui-input id="user_name" type="text" name="user_name" required />
                         </div>
                         <div class="mb-8">
-                            <ui-label for="lobby">Lobby ID</ui-label>
-                            <ui-input id="lobby" type="text" name="lobby" required v-model="lobby" />
+                            <ui-label for="channel_name">Lobby ID</ui-label>
+                            <ui-input id="channel_name" type="text" name="channel_name" required v-model="channel_name" />
                         </div>
                         <div class="flex justify-end">
                             <button class="btn">
@@ -43,7 +43,7 @@
 export default {
     data() {
         return {
-            lobby: ''
+            channel_name: ''
         }
     },
 
@@ -52,7 +52,7 @@ export default {
             this.$http.post('/game/join', new FormData(this.$refs.form))
                 .then(res => {
                     this.$store.commit('setUserId', res.data.user_id);
-                    this.$router.push(`/game/${this.lobby}/lobby`);
+                    this.$router.push(`/game/${this.channel_name}/lobby`);
                 })
                 .catch(err => {
                     this.$refs['error-modal'].show();
@@ -61,7 +61,7 @@ export default {
     },
 
     created() {
-        this.lobby = this.$route.query.lobby;
+        this.channel_name = this.$route.query.lobby;
     }
 }
 </script>

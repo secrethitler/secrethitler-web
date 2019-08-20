@@ -2,6 +2,17 @@ import http from './http';
 import pusher from './pusher';
 import nprogress from 'nprogress';
 
+const formToJson = (form) => {
+    let formData = new FormData(form);
+    let object = {};
+
+    formData.forEach((value, key) => {
+        object[key] = value;
+    });
+
+    return JSON.stringify(object);
+}
+
 let installBaseMixin = Vue => {
     Vue.mixin({
         methods: {
@@ -11,6 +22,7 @@ let installBaseMixin = Vue => {
             stopLoading() {
                 nprogress.done();
             },
+            formToJson: formToJson
         },
     });
 };

@@ -52,6 +52,18 @@ export default {
             state.members = [];
             state.rounds = [];
         },
+
+        isPresident(state) {
+            if (state.rounds.length === 0) return false;
+
+            return state.user_id = state.rounds[state.active_round].president;
+        },
+
+        isChancellor(state) {
+            if (state.rounds.length === 0) return false;
+
+            return state.user_id = state.rounds[state.active_round].chancellor;
+        },
     },
     getters: {
         members(state) {

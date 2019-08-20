@@ -29,7 +29,7 @@ export default {
 
     methods: {
         // channels
-        ...mapMutations(['setChannel', 'setPresence', 'setPrivate']),
+        ...mapMutations(['setChannelName', 'setChannel', 'setPresence', 'setPrivate']),
         // game
         ...mapMutations([
             'resetGame',
@@ -102,7 +102,5 @@ export default {
 </script>
 
 <style>
-.game {
-    @apply bg-red-600;
-}
+
 </style>
