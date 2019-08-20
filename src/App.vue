@@ -23,10 +23,6 @@ body {
     @apply bg-red-900 text-white;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 @tailwind base;
 @tailwind components;
 

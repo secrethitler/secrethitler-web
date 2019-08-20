@@ -14,7 +14,7 @@ module.exports = {
         autoprefixer(),
         tailwind('tailwind.config.js'),
         ...process.env.NODE_ENV === 'production'
-            ? [purgecss]
+            ? []
             : []
     ]
 }
