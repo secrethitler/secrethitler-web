@@ -1,7 +1,7 @@
 <template>
     <div class="game-create min-h-screen">
         <modal ref="error-modal" name="error-modal">
-            <div class="p-4">I can be clicked??</div>
+            <div class="p-4">{{ error }}</div>
         </modal>
 
         <div class="container font-serif text-white py-4 lg:py-12">
@@ -38,7 +38,9 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            error: ''
+        };
     },
 
     methods: {
@@ -50,6 +52,7 @@ export default {
                     this.$router.push(`/game/${res.data.channel_name}/lobby`);
                 })
                 .catch(err => {
+                    this.error = err.message;
                     this.$refs['error-modal'].show();
                 });
         },
