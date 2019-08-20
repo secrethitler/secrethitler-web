@@ -1,7 +1,7 @@
 <template>
     <div class="game-join min-h-screen">
 
-        <modal ref="error-modal">
+        <modal ref="error-modal" name="error-modal">
             <div class="p-4">
                 I can be clicked??
             </div>
