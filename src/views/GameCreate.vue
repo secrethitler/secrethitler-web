@@ -18,7 +18,7 @@
                     >
                         <div class="mb-8">
                             <ui-label for="user_name">Your Name</ui-label>
-                            <ui-input id="user_name" type="text" name="user_name" required />
+                            <ui-input v-model="user_name" id="user_name" type="text" name="user_name" required />
                         </div>
                         <div class="flex justify-end">
                             <button class="btn">Create Game</button>
@@ -39,14 +39,17 @@
 export default {
     data() {
         return {
-            error: ''
+            error: '',
+            user_name: ''
         };
     },
 
     methods: {
         create() {
             this.$http
-                .post('/game/create', new FormData(this.$refs.form))
+                .post('/game/create', {
+                    user_name: this.user_name
+                })
                 .then(res => {
                     this.$store.commit('setUserId', res.data.user_id);
                     this.$router.push(`/game/${res.data.channel_name}/lobby`);
