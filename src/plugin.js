@@ -3,6 +3,12 @@ import pusher from './pusher';
 import nprogress from 'nprogress';
 
 const formToJson = (form) => {
+    let object = formToObject(form);
+
+    return JSON.stringify(object);
+}
+
+const formToObject = (form) => {
     let formData = new FormData(form);
     let object = {};
 
@@ -10,7 +16,7 @@ const formToJson = (form) => {
         object[key] = value;
     });
 
-    return JSON.stringify(object);
+    return object;
 }
 
 let installBaseMixin = Vue => {
@@ -22,7 +28,8 @@ let installBaseMixin = Vue => {
             stopLoading() {
                 nprogress.done();
             },
-            formToJson: formToJson
+            formToJson: formToJson,
+            formToObject: formToObject
         },
     });
 };

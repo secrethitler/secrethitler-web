@@ -2,10 +2,7 @@ import axios from 'axios';
 import nprogress from 'nprogress';
 
 let instance = axios.create({
-    baseURL: 'http://api.secrethitler.tk/api',
-    headers: {
-        'Content-Type': 'application/json'
-    }
+    baseURL: 'http://api.secrethitler.tk/api'
 });
 
 instance.interceptors.request.use(config => {

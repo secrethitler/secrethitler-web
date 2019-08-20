@@ -46,7 +46,7 @@ export default {
     methods: {
         create() {
             this.$http
-                .post('/game/create', this.formToJson(this.$refs.form))
+                .post('/game/create', new FormData(this.$refs.form))
                 .then(res => {
                     this.$store.commit('setUserId', res.data.user_id);
                     this.$router.push(`/game/${res.data.channel_name}/lobby`);
