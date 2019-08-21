@@ -1,15 +1,19 @@
 import axios from 'axios';
 import nprogress from 'nprogress';
-
-// Memes
-// https://send.firefox.com/download/540555943cfcabcc/#Ss4jlPBCm5btC4ZWeSWiMA
+import qs from 'querystring';
 
 let instance = axios.create({
-    baseURL: 'https://51.68.188.114/api'
+    baseURL: 'https://secrethitler.tk/api',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
 });
 
 instance.interceptors.request.use(config => {
     nprogress.start();
+    config.data = qs.stringify(
+        config.data
+    );
     return config;
 });
 

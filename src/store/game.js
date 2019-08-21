@@ -12,6 +12,7 @@ export default {
         },
 
         setUserId(state, user_id) {
+            localStorage.setItem('user_id', user_id);
             state.user_id = user_id;
         },
 
@@ -70,7 +71,7 @@ export default {
             return state.members;
         },
         userId(state) {
-            return state.user_id;
+            return state.user_id || localStorage.getItem('user_id');
         },
         rounds(state) {
             return state.rounds;
