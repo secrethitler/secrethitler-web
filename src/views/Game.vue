@@ -68,7 +68,18 @@ export default {
             );
         },
         handleSubscriptionSucceeded(members) {
-            this.setMembers(members);
+            let newMembers = [];
+
+            for (let id in members.members) {
+                newMembers.push({
+                    user_id: id,
+                    ...members.members[id]
+                });
+            }
+
+            console.log(members);
+
+            this.setMembers(members.members);
         },
         handleGameStart(e) {
             this.resetGame();

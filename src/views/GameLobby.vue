@@ -15,7 +15,7 @@
                 <h3 class="font-serif text-2xl mb-2 mr-4">Players:</h3>
                 <ul>
                     <li v-for="member in members" :key="member.user_id">
-                        {{ member.channel_info.user_name }}
+                        {{ member.user_name }}
                     </li>
                 </ul>
             </div>
