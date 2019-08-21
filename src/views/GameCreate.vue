@@ -48,11 +48,11 @@ export default {
         create() {
             this.$http
                 .post('/game/create', {
-                    user_name: this.user_name
+                    userName: this.user_name
                 })
                 .then(res => {
-                    this.$store.commit('setUserId', res.data.user_id);
-                    this.$router.push(`/game/${res.data.channel_name}/lobby`);
+                    this.$store.commit('setUserId', res.data.userId);
+                    this.$router.push(`/game/${res.data.channelName}/lobby`);
                 })
                 .catch(err => {
                     this.error = err.message;

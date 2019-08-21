@@ -14,12 +14,12 @@
                 <div class="px-4 w-full lg:w-1/2 mb-8 lg:order-2">
                     <form ref="form" action="/game/join" method="POST" @submit.prevent="join" class="block w-full">
                         <div class="mb-6">
-                            <ui-label for="user_name">Your Name</ui-label>
-                            <ui-input id="user_name" type="text" name="user_name" required />
+                            <ui-label for="userName">Your Name</ui-label>
+                            <ui-input id="userName" type="text" name="userName" required v-model="userName" />
                         </div>
                         <div class="mb-8">
-                            <ui-label for="channel_name">Lobby ID</ui-label>
-                            <ui-input id="channel_name" type="text" name="channel_name" required v-model="channel_name" />
+                            <ui-label for="channelName">Lobby ID</ui-label>
+                            <ui-input id="channelName" type="text" name="channelName" required v-model="channelName" />
                         </div>
                         <div class="flex justify-end">
                             <button class="btn">
@@ -43,16 +43,21 @@
 export default {
     data() {
         return {
-            channel_name: ''
+            channelName: '',
+            userName: ''
         }
     },
 
     methods: {
         join() {
-            this.$http.post('/game/join', new FormData(this.$refs.form))
+            this.$http
+                .post('/game/join', {
+                    userName: this.userName,
+                    channelName: this.channelName
+                })
                 .then(res => {
-                    this.$store.commit('setUserId', res.data.user_id);
-                    this.$router.push(`/game/${this.channel_name}/lobby`);
+                    this.$store.commit('setUserId', res.data.userId);
+                    this.$router.push(`/game/${this.channelName}/lobby`);
                 })
                 .catch(err => {
                     this.$refs['error-modal'].show();
