@@ -48,7 +48,7 @@ export default {
         create() {
             this.$http
                 .post('/game/create', {
-                    userName: this.user_name
+                    userNames: this.user_name
                 })
                 .then(res => {
                     this.$store.commit('setUserId', res.data.userId);

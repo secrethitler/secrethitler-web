@@ -3,7 +3,7 @@ import nprogress from 'nprogress';
 import qs from 'querystring';
 
 let instance = axios.create({
-    baseURL: 'https://secrethitler.tk/api',
+    baseURL: 'https://api.secrethitler.tk/api',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
