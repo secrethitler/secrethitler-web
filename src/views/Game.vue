@@ -1,6 +1,6 @@
 <template>
     <div class="game">
-        <router-view></router-view>
+        <router-view @joinedLobby="handleJoined"></router-view>
 
         <modal name="new_president" ref="new_president">
             <NewPresident />
@@ -82,6 +82,10 @@ export default {
 
             this.setMembers(newMembers);
         },
+        handleJoined() {
+            this.subscribeToChannels();
+            this.registerListener();
+        },
         handleGameStart(e) {
             this.resetGame();
         },
@@ -96,15 +100,6 @@ export default {
         handleChancellorVote(e) {
             this.addChancellorVote(e);
         },
-    },
-
-    created() {
-        this.startLoading();
-
-        this.subscribeToChannels();
-        this.registerListener();
-
-        this.stopLoading();
     },
 
     beforeDestroy() {

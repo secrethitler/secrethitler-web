@@ -31,7 +31,7 @@
                         class="flex items-center py-2 border-b border-gray-300 text-lg font-serif"
                     >
                         {{ member.user_name }}
-                        <span v-if="member.is_me" class="ml-2 bg-red-600 text-white uppercase font-bold text-serif p-2">
+                        <span v-if="member.user_id == userId" class="ml-2 bg-red-600 text-white uppercase font-bold text-serif p-2 text-xs">
                             YOU
                         </span>
                     </li>
@@ -46,7 +46,7 @@ import { mapGetters } from 'vuex';
 
 export default {
     computed: {
-        ...mapGetters(['members']),
+        ...mapGetters(['members', 'userId']),
         link() {
             return `${window.location.protocol}//${window.location.host}/game/join?lobby=${this.$route.params.id}`;
         },
@@ -59,6 +59,10 @@ export default {
             document.execCommand('copy');
         },
     },
+
+    created() {
+        this.$emit('joinedLobby');
+    }
 };
 </script>
 
