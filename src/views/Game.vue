@@ -50,6 +50,14 @@ export default {
                 'pusher:subscription_succeeded',
                 this.handleSubscriptionSucceeded
             );
+            this.connections.presence.bind(
+                'pusher:member_added',
+                this.handleMemberAdded
+            );
+            this.connections.presence.bind(
+                'pusher:member_removed',
+                this.handleMemberRemoved
+            );
             this.connections.private.bind(
                 'game_start',
                 this.handleGameStart
@@ -81,6 +89,12 @@ export default {
             console.log(members);
 
             this.setMembers(newMembers);
+        },
+        handleMemberAdded(member) {
+            this.$store.commit('addMember', member);
+        },
+        handleMemberRemoved(member) {
+            this.$store.commit('removeMember', member);
         },
         handleJoined() {
             this.subscribeToChannels();

@@ -20,6 +20,22 @@ export default {
             state.members = members;
         },
 
+        addMember(state, member) {
+            state.members.push({
+                user_id: member.id,
+                ...member.info
+            });
+        },
+
+        removeMember(state, toRemove) {
+            let members = state.members;
+
+            let index = members.findIndex(member => member.user_id = toRemove.id);
+            members.splice(index, 1);
+
+            state.members = members;
+        },
+
         setNewRound(state) {
             state.active_round++;
             state.rounds.push({
