@@ -73,13 +73,14 @@ export default {
             for (let id in members.members) {
                 newMembers.push({
                     user_id: id,
+                    is_me: id === this.userId, 
                     ...members.members[id]
                 });
             }
 
             console.log(members);
 
-            this.setMembers(members.members);
+            this.setMembers(newMembers);
         },
         handleGameStart(e) {
             this.resetGame();

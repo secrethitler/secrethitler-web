@@ -66,7 +66,7 @@ export default {
     },
 
     created() {
-        this.channel_name = this.$route.query.lobby;
+        this.channelName = this.$route.query.lobby;
     }
 }
 </script>
