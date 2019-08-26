@@ -8,8 +8,8 @@ let pusher = new Pusher('dbaa9e20ac7717618b2a', {
         authorize: async (socketId, callback) => {
             try {
                 let res = await http.post('/pusher/auth', {
-                    socket_id: socketId,
-                    channel_name: name
+                    socketId: socketId,
+                    channelName: name
                 });
 
                 callback(false, res.data);
