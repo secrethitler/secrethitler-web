@@ -52,7 +52,7 @@ export default {
     computed: {
         ...mapGetters(['members', 'userId']),
         link() {
-            return `${window.location.protocol}//${window.location.host}/game/join?lobby=${this.$route.params.id}`;
+            return `${window.location.protocol}//${window.location.host}/join-game?lobby=${this.$route.params.id}`;
         },
         isCreator() {
             if (this.members.length === 0) {
