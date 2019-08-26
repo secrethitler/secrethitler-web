@@ -72,9 +72,11 @@ export default {
         },
 
         startGame() {
-            this.$http.post('/game/start')
-                .then(res => {
+            this.$http.post('/game/start', {
                     channelName: this.$route.params.id
+                })
+                .then(res => {
+                    console.log('starting game');
                 });
         }
     },
