@@ -58,7 +58,9 @@ export default {
             if (this.members.length === 0) {
                 return false;
             }
-            return this.members.find(member => member.is_channel_creator).user_id == this.userId;
+            let creator = this.members.filter(member => member.is_channel_creator);
+
+            return creator.length > 0 && creator[0].user_id == this.userId;
         }
     },
 

@@ -92,6 +92,7 @@ export default {
             this.$store.commit('addMember', member);
         },
         handleMemberRemoved(member) {
+            console.log(member);
             this.$store.commit('removeMember', member);
         },
         handleGameStart(e) {
