@@ -14,12 +14,12 @@ let routes = [
         redirect: '/game/join'
     },
     {
-        path: '/game/create',
+        path: '/create-game',
         name: 'game.create',
         component: require('./views/GameCreate.vue').default,
     },
     {
-        path: '/game/join',
+        path: '/join-game',
         name: 'game.join',
         component: require('./views/GameJoin.vue').default,
     },
@@ -32,6 +32,11 @@ let routes = [
                 path: 'lobby',
                 name: 'lobby',
                 component: require('./views/GameLobby.vue').default
+            },
+            {
+                path: 'info',
+                name: 'info',
+                component: require('./views/GameInfo.vue').default
             },
         ],
     },

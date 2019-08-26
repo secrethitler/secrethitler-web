@@ -3,7 +3,7 @@ channel: private ??
 data:
 ```js
 {
-    role: 'liberal|fascist|hitler',
+    role: 'Liberal|Fascist|Secret Hitler',
     // null if liberal
     party_members: null | [
         {

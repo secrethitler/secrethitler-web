@@ -37,6 +37,10 @@
                     </li>
                 </ul>
             </div>
+
+            <div v-if="isCreator" class="mt-4 flex justify-center">
+                <button class="btn btn--fancy game-start-btn" :disabled="members.length < 5 || members.length > 10" @click="startGame">Start Game</button>
+            </div>
         </div>
     </div>
 </template>
@@ -50,6 +54,12 @@ export default {
         link() {
             return `${window.location.protocol}//${window.location.host}/game/join?lobby=${this.$route.params.id}`;
         },
+        isCreator() {
+            if (this.members.length === 0) {
+                return false;
+            }
+            return this.members.find(member => member.is_channel_creator).user_id == this.userId;
+        }
     },
 
     methods: {
@@ -58,13 +68,27 @@ export default {
 
             document.execCommand('copy');
         },
+
+        startGame() {
+            this.$http.post('/game/start')
+                .then(res => {
+                    channelName: this.$route.params.id
+                });
+        }
     },
 
     created() {
-        this.$emit('joinedLobby');
+
     }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+.game-start-btn {
+    &[disabled] {
+        @apply cursor-not-allowed opacity-50;
+    }
+}
+
 </style>

@@ -5,6 +5,7 @@ export default {
         active_round: -1,
         members: [],
         rounds: [],
+        running: false
     },
     mutations: {
         setChannelName(state, channel_name) {
@@ -68,6 +69,11 @@ export default {
             state.connections = {};
             state.members = [];
             state.rounds = [];
+            state.running = false;
+        },
+
+        startGame(state) {
+            state.running = true;
         },
 
         isPresident(state) {
@@ -91,6 +97,9 @@ export default {
         },
         rounds(state) {
             return state.rounds;
+        },
+        channelName(state) {
+            return state.channel_name;
         },
         president(state) {
             let members = state.members;
