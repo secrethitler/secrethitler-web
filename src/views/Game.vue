@@ -103,7 +103,6 @@ export default {
             this.data = {};
             this.setNewRound();
             this.setNewPresident(e.president_id);
-            console.log(this.president)
         },
         handleNotifyPresident(e) {
             this.data = e;

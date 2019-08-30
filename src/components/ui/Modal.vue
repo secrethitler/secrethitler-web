@@ -1,8 +1,8 @@
 <template>
     <transition name="modal">
         <div v-if="open" class="modal" :class="{ 'modal-open': open }">
-            <div ref="modal" class="modal-inner container flex justify-center items-center">
-                <div class="w-full lg:w-1/2">
+            <div ref="modal" class="modal-inner container inline-flex justify-center items-center">
+                <div>
                     <slot></slot>
                 </div>
             </div>
@@ -62,7 +62,7 @@ export default {
     .modal-inner {
         transition: all .3s ease;
         transform: translateY(-5rem);
-        @apply block w-full rounded-lg p-4 shadow-lg bg-white;
+        @apply inline-flex rounded-lg p-4 shadow-lg bg-white;
     }
 }
 

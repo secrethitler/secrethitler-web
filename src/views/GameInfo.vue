@@ -25,7 +25,6 @@
             <div class="flex flex-col lg:flex-row">
                 <!-- Liberal Policies -->
                 <div>
-                    <h3 class="font-old text-3xl lg:px-4">Liberal</h3>
                     <div class="-mx-4 relative lg:px-8 mb-8 lg:mb-0">
                         <img src="../assets/playfield_liberal_edited.jpg" alt />
                         <transition-group name="policy" class="liberal-policy-container">
@@ -38,7 +37,6 @@
 
                 <!-- Facist Policies -->
                 <div>
-                    <h3 class="font-old text-3xl lg:px-4">Fascist</h3>
                     <div class="-mx-4 relative lg:px-8">
                         <img src="../assets/playfield_fascist_1_edited.jpg" alt />
                         <transition-group name="policy" class="fascist-policy-container">
@@ -50,6 +48,11 @@
                 </div>
 
             </div>
+
+            <div class="flex justify-center mt-8">
+                <ShowRole :role="getRole" />
+            </div>
+
             <div v-if="isCreator" class="flex justify-center mt-8">
                 <button
                     class="btn px-8 border-2 border-red-600 shadow"
@@ -62,13 +65,17 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ShowRole from '../components/ShowRole.vue';
 
 export default {
+    components: {
+        ShowRole
+    },
     data() {
         return {};
     },
     computed: {
-        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor']),
+        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor', 'role']),
         policies() {
             return this.rounds.map(round => round.enacted_policy);
         },

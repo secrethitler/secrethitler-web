@@ -3,6 +3,8 @@ export default {
         user_id: null,
         channel_name: null,
         active_round: -1,
+        role: '',
+        party_members: [],
         members: [],
         rounds: [],
         running: false
@@ -66,13 +68,17 @@ export default {
         resetGame(state) {
             state.channel_name = null;
             state.active_round = -1;
+            state.role = '';
+            state.party_members = [];
             state.connections = {};
             state.members = [];
             state.rounds = [];
             state.running = false;
         },
 
-        startGame(state) {
+        startGame(state, event) {
+            state.role = event.role_name;
+            state.party_members = event.party_members;
             state.running = true;
         },
     },
@@ -91,6 +97,9 @@ export default {
         },
         channelName(state) {
             return state.channel_name;
+        },
+        role(state) {
+            state.role.toLowerCase();
         },
         president(state, getters) {
             let members = getters.members;

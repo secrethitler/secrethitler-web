@@ -1,0 +1,59 @@
+<template>
+    <div>
+        <div class="font-serif text-white py-4 lg:py-6 mb-8 bg-red-600">
+            <h1 class="text-3xl font-bold text-center">Election</h1>
+        </div>
+        <div class="container flex justify-center">
+            <div class="lg:w-1/2">
+                <div class="mb-4">
+                    <h3 class="font-serif text-2xl mb-4">{{ chancellor.user_name }} was nominated as chancellor.</h3>
+                    <p>
+                        Do accept this nomination?
+                    </p>
+                </div>
+                <div v-if="! voted" class="flex justify-center">
+                    <div class="px-8 max-w-xs cursor-pointer" @click="vote(true)">
+                        <img src="../assets/vote_yes.jpg" alt="">
+                    </div>
+
+                    <div class="px-8 max-w-xs cursor-pointer" @click="vote(false)">
+                        <img src="../assets/vote_no.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+    data() {
+        return {
+            voted: false
+        }
+    },
+
+    computed: {
+        ...mapGetters(['chancellor']),
+    },
+
+    methods: {
+        vote(yes) {
+            this.$http.post('/chancellor/vote', {
+                channelName: this.$route.params.id,
+                chancellorId: this.chancellor.user_id,
+                votedYes: yes,
+            })
+            .then(res => {
+                this.stopLoading();
+            });
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>
