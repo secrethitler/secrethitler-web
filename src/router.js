@@ -38,6 +38,16 @@ let routes = [
                 name: 'info',
                 component: require('./views/GameInfo.vue').default
             },
+            {
+                path: 'nominate',
+                name: 'nominate',
+                component: require('./views/GameNominate.vue').default
+            },
+            {
+                path: 'vote',
+                name: 'vote',
+                component: require('./views/GameVote.vue').default
+            },
         ],
     },
 ];

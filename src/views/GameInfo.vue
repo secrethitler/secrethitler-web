@@ -5,19 +5,38 @@
         </div>
 
         <div class="container">
+            <!-- President and Chancellor -->
+            <div class="flex justify-center -mx-4 mb-8 border-b pb-4 border-gray-400">
+                <div class="px-4 flex justify-start flex-col items-center max-w-sm">
+                    <img src="../assets/president.jpg" alt class="mb-4" />
+                    <span
+                        v-if="president"
+                        class="font-serif text-xl text-center bg-white py-2 px-4 rounded shadow border-2 border-red-500"
+                    >{{ president.user_name }}</span>
+                </div>
+                <div class="px-4 flex justify-start flex-col items-center max-w-sm">
+                    <img src="../assets/chancellor.jpg" alt class="mb-4" />
+                    <span
+                        v-if="chancellor"
+                        class="font-serif text-xl text-center bg-white py-2 px-4 rounded shadow border-2 border-yellow-400"
+                    >{{ chancellor.user_name }}</span>
+                </div>
+            </div>
             <div class="flex flex-col lg:flex-row">
+                <!-- Liberal Policies -->
                 <div>
                     <h3 class="font-old text-3xl lg:px-4">Liberal</h3>
                     <div class="-mx-4 relative lg:px-8 mb-8 lg:mb-0">
                         <img src="../assets/playfield_liberal_edited.jpg" alt />
                         <transition-group name="policy" class="liberal-policy-container">
-                            <div v-for="index in 5" :key="index" class="liberal-policy">
+                            <div v-for="index in liberal" :key="index" class="liberal-policy">
                                 <img src="../assets/policy_liberal.jpg" alt />
                             </div>
                         </transition-group>
                     </div>
                 </div>
 
+                <!-- Facist Policies -->
                 <div>
                     <h3 class="font-old text-3xl lg:px-4">Fascist</h3>
                     <div class="-mx-4 relative lg:px-8">
@@ -30,9 +49,12 @@
                     </div>
                 </div>
 
-                <div v-if="isCreator" class="flex justify-center mt-8">
-                    <button class="btn" @click="handleNextRound">Next Round</button>
-                </div>
+            </div>
+            <div v-if="isCreator" class="flex justify-center mt-8">
+                <button
+                    class="btn px-8 border-2 border-red-600 shadow"
+                    @click="handleNextRound"
+                >Next Round</button>
             </div>
         </div>
     </div>
@@ -43,12 +65,10 @@ import { mapGetters } from 'vuex';
 
 export default {
     data() {
-        return {
-        
-        };
+        return {};
     },
     computed: {
-        ...mapGetters(['rounds', 'isCreator']),
+        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor']),
         policies() {
             return this.rounds.map(round => round.enacted_policy);
         },
@@ -57,16 +77,16 @@ export default {
         },
         fascist() {
             return this.policies.filter(policy => policy === 'fascist').length;
-        }
+        },
     },
 
     methods: {
         handleNextRound() {
             this.$http.post('/round/next', {
-                channelName: this.$route.params.id
+                channelName: this.$route.params.id,
             });
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -147,7 +167,7 @@ export default {
     img {
         animation-name: glow;
         animation-iteration-count: 1;
-        animation-duration: .5s;
+        animation-duration: 0.5s;
         animation-timing-function: ease;
     }
 }

@@ -1,6 +1,7 @@
 import http from './http';
 import pusher from './pusher';
 import nprogress from 'nprogress';
+import store from './store/index';
 
 const formToJson = (form) => {
     let object = formToObject(form);
@@ -29,7 +30,10 @@ let installBaseMixin = Vue => {
                 nprogress.done();
             },
             formToJson: formToJson,
-            formToObject: formToObject
+            formToObject: formToObject,
+            getUserNameFromId(id) {
+                return store.state.game.members.find(member => member.user_id == id).user_name || null;
+            }
         },
     });
 };

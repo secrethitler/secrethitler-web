@@ -1,10 +1,6 @@
 <template>
     <div class="game">
-        <router-view></router-view>
-
-        <modal name="new_president" ref="new_president">
-            <NewPresident />
-        </modal>
+        <router-view :data="data"></router-view>
 
         <modal name="chancellor_nominated" ref="chancellor_nominated">
 
@@ -14,15 +10,13 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import NewPresident from '../components/NewPresident.vue';
 
 export default {
-    components: {
-        NewPresident,
-    },
 
     data() {
-        return {};
+        return {
+            data: {}
+        };
     },
 
     computed: {
@@ -106,15 +100,18 @@ export default {
             this.$router.push({name: 'info', params: { id: this.$route.params.id}});
         },
         handleNextRound(e) {
+            this.data = {};
             this.setNewRound();
             this.setNewPresident(e.president_id);
+            console.log(this.president)
         },
         handleNotifyPresident(e) {
-            this.$refs.new_president.show();
+            this.data = e;
+            this.$router.push({ name: 'nominate', params: {id: this.$route.params.id}});
         },
         handleChancellorNominated(e) {
             this.setNominatedChancellor(e.chancellor_id);
-            this.$refs.chancellor_nominated.show();
+            this.$router.push({ name: 'vote', params: {id: this.$route.params.id} })
         },
         handleChancellorVote(e) {
             this.addChancellorVote(e);
