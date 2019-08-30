@@ -14,7 +14,6 @@
                             v-for="player_id in data.electable"
                             :key="player_id"
                             class="py-2 font-serif text-gray-700 cursor-pointer text-xl px-3 bg-white rounded shadow flex justify-between mb-2"
-                            @click="nominate(player_id)"
                         >
                             <span>{{ getUserNameFromId(player_id) }}</span>
                             <button
