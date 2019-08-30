@@ -75,18 +75,6 @@ export default {
         startGame(state) {
             state.running = true;
         },
-
-        isPresident(state) {
-            if (state.rounds.length === 0) return false;
-
-            return state.user_id = state.rounds[state.active_round].president;
-        },
-
-        isChancellor(state) {
-            if (state.rounds.length === 0) return false;
-
-            return state.user_id = state.rounds[state.active_round].chancellor;
-        },
     },
     getters: {
         members(state) {
@@ -118,6 +106,24 @@ export default {
             let chancellor_id = state.rounds[state.active_round].chancellor;
 
             return members.find(member => member.user_id === chancellor_id);
+        },
+
+        isCreator(state, getters) {
+            let creator = state.members.filter(member => member.is_channel_creator);
+
+            return creator.length > 0 && creator[0].is_me;
+        },
+
+        isPresident(state) {
+            if (state.rounds.length === 0) return false;
+
+            return state.user_id = state.rounds[state.active_round].president;
+        },
+
+        isChancellor(state) {
+            if (state.rounds.length === 0) return false;
+
+            return state.user_id = state.rounds[state.active_round].chancellor;
         },
     },
 };

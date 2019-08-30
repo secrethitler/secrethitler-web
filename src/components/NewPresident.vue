@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+        You are the new President!
     </div>
 </template>
 

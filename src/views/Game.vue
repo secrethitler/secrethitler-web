@@ -6,7 +6,9 @@
             <NewPresident />
         </modal>
 
-        <modal name="chancellor_nominated" ref="chancellor_nominated"></modal>
+        <modal name="chancellor_nominated" ref="chancellor_nominated">
+
+        </modal>
     </div>
 </template>
 
@@ -33,16 +35,17 @@ export default {
         // game
         ...mapMutations([
             'resetGame',
+            'setUserId',
             'setMembers',
             'setNewRound',
-            'setPresident',
+            'setNewPresident',
             'setNominatedChancellor',
             'addChancellorVote',
         ]),
         subscribeToChannels() {
             this.setChannelName(this.$route.params.id);
-            this.setChannel(this.$pusher.subscribe(this.$route.params.id));
             this.setPresence(this.$pusher.subscribe(`presence-${this.$route.params.id}`));
+            this.setChannel(this.$pusher.subscribe(this.$route.params.id));
             this.setPrivate(this.$pusher.subscribe(`private-${this.userId}`));
         },
         registerListener() {
@@ -63,9 +66,10 @@ export default {
                 this.handleGameStart
             );
             this.connections.channel.bind(
-                'new_president',
-                this.handleNewPresident
+                'next_round',
+                this.handleNextRound
             );
+            this.connections.private.bind('notify_president', this.handleNotifyPresident);
             this.connections.channel.bind(
                 'chancellor_nominated',
                 this.handleChancellorNominated
@@ -75,36 +79,38 @@ export default {
                 this.handleChancellorVote
             );
         },
-        handleSubscriptionSucceeded(members) {
-            let newMembers = [];
+        handleSubscriptionSucceeded(e) {
+            let members = [];
 
-            for (let id in members.members) {
-                newMembers.push({
+            for (let id in e.members) {
+                members.push({
                     user_id: id,
-                    is_me: id === this.userId, 
-                    ...members.members[id]
+                    is_me: id == e.myID,
+                    ...e.members[id]
                 });
             }
 
-            this.setMembers(newMembers);
+            this.setMembers(members);
+            this.setUserId(e.myID);
         },
         handleMemberAdded(member) {
             this.$store.commit('addMember', member);
         },
         handleMemberRemoved(member) {
-            console.log(member);
             this.$store.commit('removeMember', member);
         },
         handleGameStart(e) {
-            console.log(e, 'starting game');
             this.resetGame();
-            this.$store.commit('startGame');
+            this.$store.commit('startGame', e);
 
             this.$router.push({name: 'info', params: { id: this.$route.params.id}});
         },
-        handleNewPresident(e) {
+        handleNextRound(e) {
             this.setNewRound();
-            this.setPresident(e.president_id);
+            this.setNewPresident(e.president_id);
+        },
+        handleNotifyPresident(e) {
+            this.$refs.new_president.show();
         },
         handleChancellorNominated(e) {
             this.setNominatedChancellor(e.chancellor_id);

@@ -29,6 +29,10 @@
                         </transition-group>
                     </div>
                 </div>
+
+                <div v-if="isCreator" class="flex justify-center mt-8">
+                    <button class="btn" @click="handleNextRound">Next Round</button>
+                </div>
             </div>
         </div>
     </div>
@@ -40,21 +44,29 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            fascist: 0
+        
         };
     },
     computed: {
-        ...mapGetters(['rounds']),
+        ...mapGetters(['rounds', 'isCreator']),
         policies() {
             return this.rounds.map(round => round.enacted_policy);
         },
         liberal() {
             return this.policies.filter(policy => policy === 'liberal').length;
         },
-        // fascist() {
-        //     return this.policies.filter(policy => policy === 'fascist').length;
-        // }
+        fascist() {
+            return this.policies.filter(policy => policy === 'fascist').length;
+        }
     },
+
+    methods: {
+        handleNextRound() {
+            this.$http.post('/round/next', {
+                channelName: this.$route.params.id
+            });
+        }
+    }
 };
 </script>
 

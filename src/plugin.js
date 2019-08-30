@@ -43,6 +43,7 @@ let installUiComponents = Vue => {
     Vue.component('ui-label', require('./components/ui/Label.vue').default);
     Vue.component('ui-input', require('./components/ui/Input.vue').default);
     Vue.component('modal', require('./components/ui/Modal.vue').default);
+    Vue.component('icon', require('./components/ui/Icon.vue').default);
 };
 
 export default {

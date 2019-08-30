@@ -34,12 +34,16 @@
                         <span v-if="member.user_id == userId" class="ml-2 bg-red-600 text-white uppercase font-bold text-serif p-2 text-xs">
                             YOU
                         </span>
+
+                        <span v-if="member.is_channel_creator" class="ml-2">
+                            <icon icon="crown" class="text-2xl text-yellow-600"></icon>
+                        </span>
                     </li>
                 </ul>
             </div>
 
             <div v-if="isCreator" class="mt-4 flex justify-center">
-                <button class="btn btn--fancy game-start-btn" :disabled="members.length < 5 || members.length > 10" @click="startGame">Start Game</button>
+                <button class="btn game-start-btn" :disabled="members.length < 5 || members.length > 10" @click="startGame">Start Game</button>
             </div>
         </div>
     </div>
