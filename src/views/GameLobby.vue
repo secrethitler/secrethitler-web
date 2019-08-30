@@ -24,11 +24,11 @@
             </div>
             <div v-if="members.length > 0">
                 <h3 class="font-serif text-2xl mb-2 mr-4">Players:</h3>
-                <ul class="bg-white p-4 rounded shadow-lg">
+                <ul>
                     <li
                         v-for="member in members"
                         :key="member.user_id"
-                        class="flex items-center py-2 border-b border-gray-300 text-lg font-serif"
+                        class="flex bg-white rounded shadow-lg items-center px-4 py-3 mb-2 text-lg font-serif"
                     >
                         {{ member.user_name }}
                         <span v-if="member.user_id == userId" class="ml-2 bg-red-600 text-white uppercase font-bold text-serif p-2 text-xs">
