@@ -1,10 +1,6 @@
 <template>
-    <div class="game">
+    <div class="game pb-8">
         <router-view :data="data"></router-view>
-
-        <modal name="chancellor_nominated" ref="chancellor_nominated">
-
-        </modal>
     </div>
 </template>
 

@@ -54,18 +54,10 @@ import { mapGetters } from 'vuex';
 
 export default {
     computed: {
-        ...mapGetters(['members', 'userId']),
+        ...mapGetters(['members', 'userId', 'isCreator']),
         link() {
             return `${window.location.protocol}//${window.location.host}/join-game?lobby=${this.$route.params.id}`;
         },
-        isCreator() {
-            if (this.members.length === 0) {
-                return false;
-            }
-            let creator = this.members.filter(member => member.is_channel_creator);
-
-            return creator.length > 0 && creator[0].user_id == this.userId;
-        }
     },
 
     methods: {
@@ -85,9 +77,6 @@ export default {
         }
     },
 
-    created() {
-
-    }
 };
 </script>
 

@@ -77,6 +77,7 @@ export default {
         },
 
         startGame(state, event) {
+            console.log(event);
             state.role = event.role_name;
             state.party_members = event.party_members;
             state.running = true;
