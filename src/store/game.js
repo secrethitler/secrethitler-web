@@ -78,8 +78,8 @@ export default {
 
         startGame(state, event) {
             console.log(event);
-            state.role = event.role_name;
-            state.party_members = event.party_members;
+            state.role = event.roleName;
+            state.party_members = event.partyMembers;
             state.running = true;
         },
     },

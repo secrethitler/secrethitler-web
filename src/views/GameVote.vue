@@ -20,6 +20,10 @@
                         <img src="../assets/vote_no.jpg" alt="">
                     </div>
                 </div>
+
+                <div>
+                    {{ count }} / {{ members.length }}
+                </div>
             </div>
         </div>
     </div>
@@ -36,7 +40,13 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['chancellor']),
+        ...mapGetters(['chancellor', 'members', 'activeRound']),
+        count() {
+            return this.activeRound.votes.length;
+        },
+        hasFinished() {
+            return this.count === this.members.length;
+        }
     },
 
     methods: {
@@ -45,9 +55,6 @@ export default {
                 channelName: this.$route.params.id,
                 chancellorId: this.chancellor.user_id,
                 votedYes: yes,
-            })
-            .then(res => {
-                this.stopLoading();
             });
         }
     }
