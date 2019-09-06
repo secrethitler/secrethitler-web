@@ -2,7 +2,7 @@ import Pusher from 'pusher-js';
 import http from './http';
 
 let pusher = new Pusher('dbaa9e20ac7717618b2a', {
-    authEndpoint: 'https://api.secrethitler.tk/api/pusher/auth',
+    authEndpoint: 'https://geheimerdeutscher.tk/api/pusher/auth',
     cluster: 'eu',
     authorizer: ({ name }) => ({
         authorize: async (socketId, callback) => {
