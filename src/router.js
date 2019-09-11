@@ -48,6 +48,11 @@ let routes = [
                 name: 'vote',
                 component: require('./views/GameVote.vue').default
             },
+            {
+                path: 'vote-result',
+                name: 'vote-result',
+                component: require('./views/GameVoteResult.vue').default
+            },
         ],
     },
 ];

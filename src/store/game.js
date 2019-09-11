@@ -7,7 +7,7 @@ export default {
         party_members: [],
         members: [],
         rounds: [],
-        running: false
+        running: false,
     },
     mutations: {
         setChannelName(state, channel_name) {
@@ -20,22 +20,6 @@ export default {
         },
 
         setMembers(state, members) {
-            state.members = members;
-        },
-
-        addMember(state, member) {
-            state.members.push({
-                user_id: member.id,
-                ...member.info
-            });
-        },
-
-        removeMember(state, toRemove) {
-            let members = state.members;
-
-            let index = members.findIndex(member => member.user_id = toRemove.id);
-            members.splice(index, 1);
-
             state.members = members;
         },
 
@@ -71,14 +55,13 @@ export default {
             state.role = '';
             state.party_members = [];
             state.connections = {};
-            state.members = [];
             state.rounds = [];
             state.running = false;
         },
 
         startGame(state, event) {
-            console.log(event);
             state.role = event.roleName;
+            localStorage.setItem('role', event.roleName);
             state.party_members = event.partyMembers;
             state.running = true;
         },
@@ -88,7 +71,7 @@ export default {
             return state.members;
         },
         userId(state) {
-            return state.user_id || localStorage.getItem('user_id');
+            return state.user_id || parseInt(localStorage.getItem('user_id'));
         },
         rounds(state) {
             return state.rounds;
@@ -100,12 +83,18 @@ export default {
             return state.channel_name;
         },
         role(state) {
-            state.role.toLowerCase();
+            let role = state.role || localStorage.getItem('role');
+
+            if (!role) {
+                return null;
+            }
+
+            return role.toLowerCase();
         },
         president(state, getters) {
             let members = getters.members;
 
-            if (members.length === 0 || ! getters.activeRound) {
+            if (members.length === 0 || !getters.activeRound) {
                 return null;
             }
 
@@ -115,16 +104,18 @@ export default {
         },
         chancellor(state) {
             let members = state.members;
-            if (members.length === 0 || ! state.rounds[state.active_round]) {
+            if (members.length === 0 || !state.rounds[state.active_round]) {
                 return null;
             }
             let chancellor_id = state.rounds[state.active_round].chancellor;
 
-            return members.find(member => member.user_id === chancellor_id);
+            return members.find(member => member.user_id == chancellor_id);
         },
 
         isCreator(state) {
-            let creator = state.members.filter(member => member.is_channel_creator);
+            let creator = state.members.filter(
+                member => member.is_channel_creator
+            );
 
             return creator.length > 0 && creator[0].is_me;
         },
@@ -138,7 +129,9 @@ export default {
         isChancellor(state, getters) {
             if (state.rounds.length === 0) return false;
 
-            return getters.userId == state.rounds[state.active_round].chancellor;
+            return (
+                getters.userId == state.rounds[state.active_round].chancellor
+            );
         },
     },
 };

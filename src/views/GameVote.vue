@@ -6,12 +6,12 @@
         <div class="container flex justify-center">
             <div class="lg:w-1/2">
                 <div class="mb-4">
-                    <h3 class="font-serif text-2xl mb-4">{{ chancellor.user_name }} was nominated as chancellor.</h3>
+                    <h3 class="font-serif text-2xl mb-4">{{ chancellor.user_name || '' }} was nominated as chancellor.</h3>
                     <p>
                         Do accept this nomination?
                     </p>
                 </div>
-                <div v-if="! voted" class="flex justify-center">
+                <div class="pt-6 flex justify-center" :class="{ 'opacity-50': voted, 'pointer-events-none': voted }">
                     <div class="px-8 max-w-xs cursor-pointer" @click="vote(true)">
                         <img src="../assets/vote_yes.jpg" alt="">
                     </div>
@@ -21,8 +21,8 @@
                     </div>
                 </div>
 
-                <div>
-                    {{ count }} / {{ members.length }}
+                <div class="pt-8 text-center font-old text-4xl text-gray-700">
+                    {{ count }} / {{ members.length }} have voted.
                 </div>
             </div>
         </div>
@@ -50,7 +50,9 @@ export default {
     },
 
     methods: {
+        
         vote(yes) {
+            this.voted = true;
             this.$http.post('/chancellor/vote', {
                 channelName: this.$route.params.id,
                 chancellorId: this.chancellor.user_id,

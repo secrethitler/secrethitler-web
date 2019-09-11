@@ -41,6 +41,7 @@
                     </li>
                 </ul>
             </div>
+            <loader v-else></loader>
 
             <div v-if="isCreator" class="mt-4 flex justify-center">
                 <button class="btn game-start-btn" :disabled="members.length < 5 || members.length > 10" @click="startGame">Start Game</button>

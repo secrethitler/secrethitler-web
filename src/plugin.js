@@ -48,6 +48,7 @@ let installUiComponents = Vue => {
     Vue.component('ui-input', require('./components/ui/Input.vue').default);
     Vue.component('modal', require('./components/ui/Modal.vue').default);
     Vue.component('icon', require('./components/ui/Icon.vue').default);
+    Vue.component('loader', require('./components/ui/Loader.vue').default);
 };
 
 export default {

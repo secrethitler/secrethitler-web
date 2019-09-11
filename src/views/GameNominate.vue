@@ -36,6 +36,12 @@ export default {
         },
     },
 
+    data() {
+        return {
+            electable: []
+        }
+    },
+
     methods: {
         nominate(id) {
             this.$http.post('/chancellor/nominate', {
@@ -44,6 +50,14 @@ export default {
             });
         },
     },
+
+    created() {
+        if (this.data) {
+            localStorage.setItem('electable', this.data);
+        }
+
+        this.electable = this.data || localStorage.getItem('electable');
+    }
 };
 </script>
 

@@ -50,7 +50,7 @@
             </div>
 
             <div class="flex justify-center mt-8">
-                <ShowRole :role="getRole" />
+                <ShowRole :role="role" />
             </div>
 
             <div v-if="isCreator" class="flex justify-center mt-8">
@@ -75,7 +75,7 @@ export default {
         return {};
     },
     computed: {
-        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor', 'role']),
+        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor', 'role', 'role']),
         policies() {
             return this.rounds.map(round => round.enacted_policy);
         },

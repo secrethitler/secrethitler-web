@@ -11,12 +11,13 @@ export default {
 
     data() {
         return {
-            data: {}
+            data: {},
+            loadChannels: false
         };
     },
 
     computed: {
-        ...mapGetters(['connections', 'members', 'userId']),
+        ...mapGetters(['connections', 'members', 'userId', 'isPresident']),
     },
 
     methods: {
@@ -33,23 +34,25 @@ export default {
             'addChancellorVote',
         ]),
         subscribeToChannels() {
+            this.loadChannels = true;
             this.setChannelName(this.$route.params.id);
             this.setPresence(this.$pusher.subscribe(`presence-${this.$route.params.id}`));
             this.setChannel(this.$pusher.subscribe(this.$route.params.id));
             this.setPrivate(this.$pusher.subscribe(`private-${this.userId}`));
+            this.loadChannels = false;
         },
         registerListener() {
             this.connections.presence.bind(
                 'pusher:subscription_succeeded',
-                this.handleSubscriptionSucceeded
+                this.updateMembers
             );
             this.connections.presence.bind(
                 'pusher:member_added',
-                this.handleMemberAdded
+                this.updateMembers
             );
             this.connections.presence.bind(
                 'pusher:member_removed',
-                this.handleMemberRemoved
+                this.updateMembers
             );
             this.connections.private.bind(
                 'game_start',
@@ -59,7 +62,10 @@ export default {
                 'next_round',
                 this.handleNextRound
             );
-            this.connections.private.bind('notify_president', this.handleNotifyPresident);
+            this.connections.private.bind(
+                'notify_president',
+                this.handleNotifyPresident
+            );
             this.connections.channel.bind(
                 'chancellor_nominated',
                 this.handleChancellorNominated
@@ -68,26 +74,31 @@ export default {
                 'chancellor_vote',
                 this.handleChancellorVote
             );
+            this.connections.channel.bind(
+                'chancellor_elected',
+                this.handleChancellorElected
+            )
+            this.connections.private.bind(
+                'receive_policies',
+                this.handleReceivePolicies
+            );
         },
-        handleSubscriptionSucceeded(e) {
+        updateMembers() {
+            let data = this.connections.presence.members;
+
+            this.setUserId(data.myID);
+
             let members = [];
 
-            for (let id in e.members) {
+            for (let id in data.members) {
                 members.push({
                     user_id: id,
-                    is_me: id == e.myID,
-                    ...e.members[id]
+                    is_me: id == data.myID,
+                    ...data.members[id]
                 });
             }
 
             this.setMembers(members);
-            this.setUserId(e.myID);
-        },
-        handleMemberAdded(member) {
-            this.$store.commit('addMember', member);
-        },
-        handleMemberRemoved(member) {
-            this.$store.commit('removeMember', member);
         },
         handleGameStart(e) {
             this.resetGame();
@@ -111,6 +122,15 @@ export default {
         handleChancellorVote(e) {
             this.addChancellorVote(e);
         },
+        handleChancellorElected(e) {
+            if (! this.isPresident) {
+                this.data = e;
+                this.$router.push({name: 'vote-result', params: { id: this.$route.params.id}});
+            }
+        },
+        handleReceivePolicies(e) {
+
+        }
     },
 
     created() {
