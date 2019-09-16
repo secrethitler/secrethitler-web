@@ -49,7 +49,7 @@ export default {
         discard(policy) {
             this.discarding = true;
             
-            this.$http.post('/chancellor-pick', {
+            this.$http.post('/policy/chancellor-pick', {
                 channelName: this.$route.params.id,
                 discardedPolicy: policy,
             }).then(res => {

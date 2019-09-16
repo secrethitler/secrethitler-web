@@ -32,6 +32,7 @@ export default {
             'setNewPresident',
             'setNominatedChancellor',
             'addChancellorVote',
+            'setEnactedPolicy'
         ]),
         subscribeToChannels() {
             this.loadChannels = true;
@@ -145,7 +146,7 @@ export default {
             this.$router.push({name: 'chancellor-select-policy', params: { id: this.$route.params.id}})
         },
         handlePolicyEnacted(e) {
-            this.$store.commit('setEnactedPolicy', e.policy);
+            this.setEnactedPolicy(e.policy);
         }
     },
 
