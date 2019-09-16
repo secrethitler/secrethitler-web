@@ -53,6 +53,16 @@ let routes = [
                 name: 'vote-result',
                 component: require('./views/GameVoteResult.vue').default
             },
+            {
+                path: 'president-select-policy',
+                name: 'president-select-policy',
+                component: require('./views/GamePresidentSelectPolicy.vue').default
+            },
+            {
+                path: 'chancellor-select-policy',
+                name: 'chancellor-select-policy',
+                component: require('./views/GameChancellorSelectPolicy.vue').default
+            },
         ],
     },
 ];

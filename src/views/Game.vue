@@ -79,8 +79,16 @@ export default {
                 this.handleChancellorElected
             )
             this.connections.private.bind(
-                'receive_policies',
-                this.handleReceivePolicies
+                'president_receive_policies',
+                this.handlePresidentReceivePolicies
+            );
+            this.connections.private.bind(
+                'chancellor_receive_policies',
+                this.handleChancellorReceivePolicies
+            );
+            this.connections.channel.bind(
+                'policy_enacted',
+                this.handlePolicyEnacted
             );
         },
         updateMembers() {
@@ -128,8 +136,16 @@ export default {
                 this.$router.push({name: 'vote-result', params: { id: this.$route.params.id}});
             }
         },
-        handleReceivePolicies(e) {
-
+        handlePresidentReceivePolicies(e) {
+            this.data = e;
+            this.$router.push({name: 'president-select-policy', params: { id: this.$route.params.id}})
+        },
+        handleChancellorReceivePolicies(e) {
+            this.data = e;
+            this.$router.push({name: 'chancellor-select-policy', params: { id: this.$route.params.id}})
+        },
+        handlePolicyEnacted(e) {
+            this.$store.commit('setEnactedPolicy', e.policy);
         }
     },
 

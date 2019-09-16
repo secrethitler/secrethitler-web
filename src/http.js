@@ -2,7 +2,7 @@ import axios from 'axios';
 import nprogress from 'nprogress';
 
 let instance = axios.create({
-    baseURL: 'http://10.14.208.70:1337/api',
+    baseURL: 'https://secrethitler.tk/api',
     // baseURL: 'https://geheimerdeutscher.tk/api',
     withCredentials: true,
     // headers: {
