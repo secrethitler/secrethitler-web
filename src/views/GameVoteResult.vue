@@ -16,11 +16,13 @@
                             class="py-2 font-serif text-gray-700 cursor-pointer text-xl px-3 bg-white rounded shadow flex justify-between mb-2"
                         >
                             <span>{{ member.user_name }}</span>
-                            <div class="vote-indicator" :class="{ 'vote-yes': getVoteForId(member.user_id), 'vote-no': ! getVoteForId(member.user_id) }">
-
-                            </div>
+                            <div class="vote-indicator" :class="{ 'vote-yes': getVoteForId(member.user_id), 'vote-no': ! getVoteForId(member.user_id) }"></div>
                         </li>
                     </ul>
+                </div>
+
+                <div class="flex justify-center py-4">
+                    <router-link class="cta shadow" :to="{ name: 'info', params: { id: $route.params.id } }">Back</router-link>
                 </div>
             </div>
         </div>
@@ -44,7 +46,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['members', 'activeRound'])
+        ...mapGetters(['members', 'activeRound', 'channelName'])
     },
 
     methods: {

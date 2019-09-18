@@ -7,6 +7,7 @@ export default {
         party_members: [],
         members: [],
         rounds: [],
+        killed: [],
         running: false,
     },
     mutations: {
@@ -56,6 +57,7 @@ export default {
             state.party_members = [];
             state.connections = {};
             state.rounds = [];
+            state.killed = [];
             state.running = false;
         },
 
@@ -65,10 +67,14 @@ export default {
             state.party_members = event.partyMembers;
             state.running = true;
         },
+
+        killPlayer(state, id) {
+            state.killed.push(id);
+        }
     },
     getters: {
         members(state) {
-            return state.members;
+            return state.members.filter(member => ! state.killed.includes(member.user_id));
         },
         userId(state) {
             return state.user_id || parseInt(localStorage.getItem('user_id'));
@@ -102,8 +108,8 @@ export default {
 
             return members.find(member => member.user_id == president_id);
         },
-        chancellor(state) {
-            let members = state.members;
+        chancellor(state, getters) {
+            let members = getters.members;
             if (members.length === 0 || !state.rounds[state.active_round]) {
                 return null;
             }

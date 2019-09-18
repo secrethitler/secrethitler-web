@@ -63,6 +63,12 @@ let routes = [
                 name: 'chancellor-select-policy',
                 component: require('./views/GameChancellorSelectPolicy.vue').default
             },
+            // Special President Powers
+            {
+                path: 'eliminate-player',
+                name: 'eliminate-player',
+                component: require('./views/GameKillPlayer.vue').default
+            },
         ],
     },
 ];

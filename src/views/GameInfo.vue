@@ -5,6 +5,9 @@
         </div>
 
         <div class="container">
+            <h3 class="mb-2">
+                Round {{ rounds.length }}
+            </h3>
             <!-- President and Chancellor -->
             <div class="flex justify-center -mx-4 mb-8 border-b pb-4 border-gray-400">
                 <div class="px-4 flex justify-start flex-col items-center max-w-sm">
@@ -75,7 +78,7 @@ export default {
         return {};
     },
     computed: {
-        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor', 'role', 'role']),
+        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor', 'role', 'channelName']),
         policies() {
             return this.rounds.map(round => round.enacted_policy);
         },

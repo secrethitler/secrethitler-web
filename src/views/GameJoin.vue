@@ -3,7 +3,7 @@
 
         <modal ref="error-modal" name="error-modal">
             <div class="p-4">
-                I can be clicked??
+                {{ error }}
             </div>
         </modal>
 
@@ -44,7 +44,8 @@ export default {
     data() {
         return {
             channelName: '',
-            userName: ''
+            userName: '',
+            error: ''
         }
     },
 
@@ -60,6 +61,7 @@ export default {
                     this.$router.push(`/game/${this.channelName}/lobby`);
                 })
                 .catch(err => {
+                    this.error = err.message;
                     this.$refs['error-modal'].show();
                 });
         }

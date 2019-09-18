@@ -17,7 +17,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['connections', 'members', 'userId', 'isPresident']),
+        ...mapGetters(['connections', 'members', 'userId', 'isPresident', 'channelName']),
     },
 
     methods: {
@@ -132,6 +132,7 @@ export default {
             this.addChancellorVote(e);
         },
         handleChancellorElected(e) {
+            // TODO check if enacted. If not, also show to president.
             if (! this.isPresident) {
                 this.data = e;
                 this.$router.push({name: 'vote-result', params: { id: this.$route.params.id}});
