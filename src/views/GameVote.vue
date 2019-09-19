@@ -11,7 +11,7 @@
                         Do accept this nomination?
                     </p>
                 </div>
-                <div class="pt-6 flex justify-center" :class="{ 'opacity-50': voted, 'pointer-events-none': voted }">
+                <div class="pt-6 flex justify-center" :class="{ 'opacity-50': hasVoted, 'pointer-events-none': hasVoted }">
                     <div class="px-8 max-w-xs cursor-pointer" @click="vote(true)">
                         <img src="../assets/vote_yes.jpg" alt="">
                     </div>
@@ -40,12 +40,15 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['chancellor', 'members', 'activeRound']),
+        ...mapGetters(['chancellor', 'members', 'activeRound', 'userId']),
         count() {
             return this.activeRound.votes.length;
         },
         hasFinished() {
             return this.count === this.members.length;
+        },
+        hasVoted() {
+            return this.voted || !! this.activeRound.votes.find(vote => vote.user_id == this.userId);
         }
     },
 

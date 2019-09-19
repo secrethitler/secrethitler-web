@@ -1,3 +1,5 @@
+import storage from '../storage';
+
 export default {
     state: {
         user_id: null,
@@ -13,15 +15,17 @@ export default {
     mutations: {
         setChannelName(state, channel_name) {
             state.channel_name = channel_name;
+            storage.set('channel_name', state.channel_name);
         },
 
         setUserId(state, user_id) {
-            localStorage.setItem('user_id', user_id);
             state.user_id = user_id;
+            storage.set('user_id', state.user_id);
         },
 
         setMembers(state, members) {
             state.members = members;
+            storage.set('members', members);
         },
 
         setNewRound(state) {
@@ -32,22 +36,29 @@ export default {
                 votes: [],
                 enacted_policy: null,
             });
+
+            storage.set('active_round', state.active_round);
+            storage.set('rounds', state.rounds);
         },
 
         setNewPresident(state, president_id) {
             state.rounds[state.active_round].president = president_id;
+            storage.set('rounds', state.rounds);
         },
 
         setNominatedChancellor(state, chancellor_id) {
             state.rounds[state.active_round].chancellor = chancellor_id;
+            storage.set('rounds', state.rounds);
         },
 
         addChancellorVote(state, incomingVote) {
             state.rounds[state.active_round].votes.push(incomingVote);
+            storage.set('rounds', state.rounds);
         },
 
         setEnactedPolicy(state, policy) {
             state.rounds[state.active_round].enacted_policy = policy;
+            storage.set('rounds', state.rounds);
         },
 
         resetGame(state) {
@@ -59,37 +70,58 @@ export default {
             state.rounds = [];
             state.killed = [];
             state.running = false;
+
+            storage.remove('channel_name');
+            storage.remove('active_round');
+            storage.remove('rounds');
+            storage.remove('role');
+            storage.remove('party_members');
+            storage.remove('killed');
         },
 
         startGame(state, event) {
             state.role = event.roleName;
-            localStorage.setItem('role', event.roleName);
             state.party_members = event.partyMembers;
             state.running = true;
+
+            storage.set('role', event.roleName);
+            storage.set('party_members', event.partyMembers);
         },
 
         killPlayer(state, id) {
             state.killed.push(id);
+            storage.set('killed', state.killed);
         }
     },
     getters: {
-        members(state) {
-            return state.members.filter(member => ! state.killed.includes(member.user_id));
+        members(state, getters) {
+            let members = state.members.length > 0 ? state.members : storage.get('members', []);
+
+            return members.filter(member => ! getters.killed.includes(member.user_id));
+        },
+        killed(state, getters) {
+            return state.killed;
         },
         userId(state) {
-            return state.user_id || parseInt(localStorage.getItem('user_id'));
+            return state.user_id || parseInt(storage.get('user_id'));
         },
         rounds(state) {
-            return state.rounds;
+            return state.rounds.length > 0 ? state.rounds : storage.get('rounds', []);
         },
-        activeRound(state) {
-            return state.rounds[state.active_round];
+        activeRound(state, getters) {
+            let round = getters.rounds[state.active_round];
+
+            if (round != undefined) {
+                return round;
+            }
+
+            return getters.rounds[storage.get('active_round')];
         },
         channelName(state) {
             return state.channel_name;
         },
         role(state) {
-            let role = state.role || localStorage.getItem('role');
+            let role = state.role || storage.get('role');
 
             if (!role) {
                 return null;
@@ -99,21 +131,13 @@ export default {
         },
         president(state, getters) {
             let members = getters.members;
-
-            if (members.length === 0 || !getters.activeRound) {
-                return null;
-            }
-
             let president_id = getters.activeRound.president;
 
             return members.find(member => member.user_id == president_id);
         },
         chancellor(state, getters) {
             let members = getters.members;
-            if (members.length === 0 || !state.rounds[state.active_round]) {
-                return null;
-            }
-            let chancellor_id = state.rounds[state.active_round].chancellor;
+            let chancellor_id = getters.activeRound.chancellor;
 
             return members.find(member => member.user_id == chancellor_id);
         },

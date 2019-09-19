@@ -91,6 +91,14 @@ export default {
                 'policy_enacted',
                 this.handlePolicyEnacted
             );
+            this.connections.channel.bind(
+                'game_won',
+                this.handleGameWon
+            );
+            // Special Powers (Kann - Kriterien)
+            this.connections.private.bind(
+                ''
+            );
         },
         updateMembers() {
             let data = this.connections.presence.members;
@@ -132,8 +140,7 @@ export default {
             this.addChancellorVote(e);
         },
         handleChancellorElected(e) {
-            // TODO check if enacted. If not, also show to president.
-            if (! this.isPresident) {
+            if (! this.isPresident || ! e.elected) {
                 this.data = e;
                 this.$router.push({name: 'vote-result', params: { id: this.$route.params.id}});
             }
@@ -148,6 +155,10 @@ export default {
         },
         handlePolicyEnacted(e) {
             this.setEnactedPolicy(e.policy);
+        },
+        handleGameWon(e) {
+            this.data = e;
+            this.$router.push({ name: 'game-over', params: { id: this.$route.params.id } });
         }
     },
 
@@ -161,7 +172,3 @@ export default {
     },
 };
 </script>
-
-<style>
-
-</style>
