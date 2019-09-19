@@ -131,13 +131,31 @@ export default {
         },
         president(state, getters) {
             let members = getters.members;
+
+            if (! getters.activeRound) {
+                return null;
+            }
+            
             let president_id = getters.activeRound.president;
+
+            if (! president_id) {
+                return null;
+            }
 
             return members.find(member => member.user_id == president_id);
         },
         chancellor(state, getters) {
             let members = getters.members;
+            
+            if (! getters.activeRound) {
+                return null;
+            }
+
             let chancellor_id = getters.activeRound.chancellor;
+
+            if (! chancellor_id) {
+                return null;
+            }
 
             return members.find(member => member.user_id == chancellor_id);
         },
