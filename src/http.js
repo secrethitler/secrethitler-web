@@ -6,9 +6,6 @@ let instance = axios.create({
     baseURL: 'https://secrethitler.tk/api',
     // baseURL: 'https://geheimerdeutscher.tk/api',
     withCredentials: true,
-    headers: {
-        'X-User-Id': store.getters.userId
-    }
 });
 
 instance.interceptors.request.use(config => {
