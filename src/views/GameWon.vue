@@ -5,7 +5,7 @@
         </div>
 
         <div class="container">
-            <h3 class="mb-2">{{ data.party }} have won the game.</h3>
+            <h3 class="mb-2 font-old text-4xl">{{ data.party }} have won the game.</h3>
             <p>{{ data.reason }}</p>
         </div>
      </div>            

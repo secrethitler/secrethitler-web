@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import storage from '../storage';
+
 export default {
     props: {
         data: {
@@ -53,10 +55,10 @@ export default {
 
     created() {
         if (this.data) {
-            localStorage.setItem('electable', this.data);
+            storage.set('electable', this.data);
         }
 
-        this.electable = this.data || localStorage.getItem('electable');
+        this.electable = this.data || storage.get('electable', []);
     }
 };
 </script>

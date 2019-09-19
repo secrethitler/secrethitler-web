@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import storage from '../storage';
+
 export default {
     props: {
         data: {
@@ -57,10 +59,10 @@ export default {
 
     created() {
         if (this.data) {
-            localStorage.setItem('killable', this.data);
+            storage.set('killable', this.data);
         }
 
-        this.killable = this.data || localStorage.getItem('killable');
+        this.killable = this.data || storage.get('killable', []);
     }
 };
 </script>
