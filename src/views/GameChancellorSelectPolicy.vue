@@ -54,6 +54,10 @@ export default {
                 discardedPolicy: policy,
             }).then(res => {
                 this.$router.push({name: 'info', params: { id: this.$route.params.id}});
+            })
+            .catch(err => {
+                alert(err.message);
+                this.discarding = false;
             });
         }
     },
