@@ -165,6 +165,7 @@ export default {
     created() {
         this.subscribeToChannels();
         this.registerListener();
+        console.log(this.$store.state);
     },
 
     beforeDestroy() {
