@@ -17,7 +17,7 @@
                 <img v-if="role == 'liberal'" src="../assets/role_liberal.jpg" alt="Liberal">
                 <img v-if="role == 'secret hitler'" src="../assets/role_hitler.jpg" alt="Hitler">
             </div>
-            <div v-if="partyMembers.length > 0">
+            <div v-if="partyMembers.length > 0 && role != 'liberal'">
                 <div v-for="member in partyMembers" :key="member.userId">
                     <span>{{ member.userName }}: {{ member.roleName }}</span>
                 </div>
