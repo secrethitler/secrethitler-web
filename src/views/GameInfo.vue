@@ -41,8 +41,8 @@
                 <!-- Facist Policies -->
                 <div>
                     <div class="-mx-4 relative lg:px-8">
-                        <img v-if="members.length >= 5 && memebrs.length <= 6" src="../assets/playfield_fascist_1_edited.jpg" alt />
-                        <img v-else-if="members.length >= 7 && memebrs.length <= 8" src="../assets/playfield_fascist_2_edited.jpg" alt />
+                        <img v-if="members.length >= 5 && members.length <= 6" src="../assets/playfield_fascist_1_edited.jpg" alt />
+                        <img v-else-if="members.length >= 7 && members.length <= 8" src="../assets/playfield_fascist_2_edited.jpg" alt />
                         <img v-else src="../assets/playfield_fascist_3_edited.jpg" alt />
                         <transition-group name="policy" class="fascist-policy-container">
                             <div v-for="index in fascist" :key="index" class="fascist-policy">
