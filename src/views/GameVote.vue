@@ -12,11 +12,11 @@
                     </p>
                 </div>
                 <div class="pt-6 flex justify-center" :class="{ 'opacity-50': hasVoted, 'pointer-events-none': hasVoted }">
-                    <div class="px-8 max-w-xs cursor-pointer" @click="vote(true)">
+                    <div class="px-8 max-w-xs cursor-pointer border-4 border-transparent" :class="{ 'border-red-700': voted == 'yes' }" @click="vote(true)">
                         <img src="../assets/vote_yes.jpg" alt="">
                     </div>
 
-                    <div class="px-8 max-w-xs cursor-pointer" @click="vote(false)">
+                    <div class="px-8 max-w-xs cursor-pointer border-4 border-transparent" :class="{ 'border-red-700': voted == 'no' }" @click="vote(false)">
                         <img src="../assets/vote_no.jpg" alt="">
                     </div>
                 </div>
@@ -35,7 +35,8 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            voted: false
+            disable: false,
+            voted: false,
         }
     },
 
@@ -48,18 +49,25 @@ export default {
             return this.count === this.members.length;
         },
         hasVoted() {
-            return this.voted || !! this.activeRound.votes.find(vote => vote.user_id == this.userId);
+            return this.disable || !! this.activeRound.votes.find(vote => vote.user_id == this.userId);
         }
     },
 
     methods: {
         
         vote(yes) {
-            this.voted = true;
+            this.disable = true;
             this.$http.post('/chancellor/vote', {
                 channelName: this.$route.params.id,
                 chancellorId: this.chancellor.user_id,
                 votedYes: yes,
+            })
+            .then(res => {
+                this.voted = yes ? 'yes' : 'no';
+            })
+            .catch(err => {
+                alert(err.message);
+                this.disable = false;
             });
         }
     }
