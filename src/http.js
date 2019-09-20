@@ -16,6 +16,7 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(
     response => {
         nprogress.done();
+        console.log(response.headers);
         return response;
     },
     error => {
