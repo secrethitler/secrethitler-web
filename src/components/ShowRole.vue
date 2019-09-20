@@ -17,8 +17,8 @@
                 <img v-if="role == 'liberal'" src="../assets/role_liberal.jpg" alt="Liberal">
                 <img v-if="role == 'secret hitler'" src="../assets/role_hitler.jpg" alt="Hitler">
             </div>
-            <div v-if="$store.state.party_members">
-                <div v-for="member in $store.state.party_members" :key="member.userId">
+            <div>
+                <div v-for="member in $store.state.party_members || []" :key="member.userId">
                     <span>{{ member.userName }}: {{ member.roleName }}</span>
                 </div>
             </div>
