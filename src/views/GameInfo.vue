@@ -20,7 +20,7 @@
                 <div class="px-4 flex justify-start flex-col items-center max-w-sm">
                     <img src="../assets/chancellor.jpg" alt class="mb-4" />
                     <span
-                        v-if="chancellor"
+                        v-if="chancellor && isElected"
                         class="font-serif text-xl text-center bg-white py-2 px-4 rounded shadow border-2 border-yellow-400"
                     >{{ chancellor.user_name }}</span>
                 </div>
@@ -41,7 +41,9 @@
                 <!-- Facist Policies -->
                 <div>
                     <div class="-mx-4 relative lg:px-8">
-                        <img src="../assets/playfield_fascist_1_edited.jpg" alt />
+                        <img v-if="members.length >= 5 && memebrs.length <= 6" src="../assets/playfield_fascist_1_edited.jpg" alt />
+                        <img v-else-if="members.length >= 7 && memebrs.length <= 8" src="../assets/playfield_fascist_2_edited.jpg" alt />
+                        <img v-else src="../assets/playfield_fascist_3_edited.jpg" alt />
                         <transition-group name="policy" class="fascist-policy-container">
                             <div v-for="index in fascist" :key="index" class="fascist-policy">
                                 <img src="../assets/policy_fascist.jpg" alt />
@@ -78,7 +80,7 @@ export default {
         return {};
     },
     computed: {
-        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor', 'role', 'channelName']),
+        ...mapGetters(['rounds', 'isCreator', 'president', 'chancellor', 'role', 'channelName', 'members', 'isElected']),
         policies() {
             return this.rounds.map(round => round.enacted_policy);
         },

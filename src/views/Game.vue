@@ -140,6 +140,7 @@ export default {
             this.addChancellorVote(e);
         },
         handleChancellorElected(e) {
+            this.$store.commit('setElected', e.elected);
             if (! this.isPresident || ! e.elected) {
                 this.data = e;
                 this.$router.push({name: 'vote-result', params: { id: this.$route.params.id}});

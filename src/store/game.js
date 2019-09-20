@@ -33,6 +33,7 @@ export default {
             state.rounds.push({
                 president: null,
                 chancellor: null,
+                chancellor_elected: false,
                 votes: [],
                 enacted_policy: null,
             });
@@ -58,6 +59,11 @@ export default {
 
         setEnactedPolicy(state, policy) {
             state.rounds[state.active_round].enacted_policy = policy;
+            storage.set('rounds', state.rounds);
+        },
+
+        setElected(state, elected) {
+            state.rounds[state.active_round].chancellor_elected = elected;
             storage.set('rounds', state.rounds);
         },
 
@@ -123,6 +129,9 @@ export default {
         },
         channelName(state) {
             return state.channel_name;
+        },
+        isElected(state, getters) {
+            return getters.activeRound.chancellorElected;
         },
         role(state) {
             let role = state.role || storage.get('role');
