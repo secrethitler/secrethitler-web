@@ -131,7 +131,7 @@ export default {
             return state.channel_name;
         },
         isElected(state, getters) {
-            return getters.activeRound.chancellorElected;
+            return getters.activeRound.chancellor_elected;
         },
         role(state) {
             let role = state.role || storage.get('role');

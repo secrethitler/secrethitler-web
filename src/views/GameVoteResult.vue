@@ -4,7 +4,7 @@
             <h1 class="text-3xl font-bold text-center">Election Result</h1>
         </div>
         <div class="container flex justify-center">
-            <div class="lg:w-1/2">
+            <div class="w-full lg:w-1/2">
                 <!-- <h3 class="font-serif text-2xl mb-4">You are the new President!</h3> -->
                 <!-- <p>Select a player you would like to nominate as chancellor.</p> -->
 
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="flex justify-center py-4">
-                    <router-link class="cta shadow" :to="{ name: 'info', params: { id: $route.params.id } }">Back</router-link>
+                    <router-link class="btn shadow" :to="{ name: 'info', params: { id: $route.params.id } }">Back</router-link>
                 </div>
             </div>
         </div>
