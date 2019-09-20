@@ -12,10 +12,15 @@
         </button>
 
         <modal name="role" ref="modal">
-            <div class="flex justify-center">
+            <div class="flex justify-center mb-4">
                 <img v-if="role == 'fascist'" src="../assets/role_fascist.jpg" alt="Fascist">
                 <img v-if="role == 'liberal'" src="../assets/role_liberal.jpg" alt="Liberal">
                 <img v-if="role == 'secret hitler'" src="../assets/role_hitler.jpg" alt="Hitler">
+            </div>
+            <div v-if="$store.state.party_members">
+                <div v-for="member in $store.state.party_members" :key="member.userId">
+                    <span>{{ member.userName }}: {{ member.roleName }}</span>
+                </div>
             </div>
         </modal>
     </div>
