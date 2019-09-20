@@ -100,6 +100,9 @@ export default {
 
             return members.filter(member => ! getters.killed.includes(member.user_id));
         },
+        partyMembers(state, getters) {
+            return state.party_members || storage.get('party_members', []);
+        },
         killed(state, getters) {
             return state.killed;
         },

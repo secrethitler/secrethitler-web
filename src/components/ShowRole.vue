@@ -18,7 +18,7 @@
                 <img v-if="role == 'secret hitler'" src="../assets/role_hitler.jpg" alt="Hitler">
             </div>
             <div>
-                <div v-for="member in $store.state.party_members || []" :key="member.userId">
+                <div v-for="member in partyMembers || []" :key="member.userId">
                     <span>{{ member.userName }}: {{ member.roleName }}</span>
                 </div>
             </div>
@@ -27,8 +27,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     props: ['role'],
+
+    computed: {
+        ...mapGetters(['partyMembers'])
+    },
 
     methods: {
         show() {
