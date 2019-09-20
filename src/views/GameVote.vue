@@ -12,11 +12,11 @@
                     </p>
                 </div>
                 <div class="pt-6 flex justify-center" :class="{ 'opacity-50': hasVoted, 'pointer-events-none': hasVoted }">
-                    <div class="px-8 max-w-xs cursor-pointer border-4 border-transparent" :class="{ 'border-red-700': voted == 'yes' }" @click="vote(true)">
+                    <div class="p-6 max-w-xs cursor-pointer border-4 border-transparent" :class="{ 'border-red-700': voted == 'yes' }" @click="vote(true)">
                         <img src="../assets/vote_yes.jpg" alt="">
                     </div>
 
-                    <div class="px-8 max-w-xs cursor-pointer border-4 border-transparent" :class="{ 'border-red-700': voted == 'no' }" @click="vote(false)">
+                    <div class="p-6 max-w-xs cursor-pointer border-4 border-transparent" :class="{ 'border-red-700': voted == 'no' }" @click="vote(false)">
                         <img src="../assets/vote_no.jpg" alt="">
                     </div>
                 </div>
