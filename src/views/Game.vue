@@ -103,6 +103,10 @@ export default {
             this.connetions.private.bind(
                 'policy_peek',
                 this.handlePolicyPeek
+            );
+            this.connections.channel.bind(
+                'player_killed',
+                this.handlePlayerKilled
             )
         },
         updateMembers() {
@@ -173,6 +177,9 @@ export default {
         handlePolicyPeek(e) {
             this.data = e;
             this.$router.push({ name: 'policy-peek', params: { id: this.$route.params.id } });
+        },
+        handlePlayerKilled(e) {
+            this.$store.commit('killPlayer', e.userId);
         }
     },
 

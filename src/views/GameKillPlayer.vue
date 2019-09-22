@@ -60,7 +60,6 @@ export default {
                 userId: id,
             })
             .then(res => {
-                // this.$store.commit('killPlayer', id);
                 this.$router.push({name: 'info', params: { id: this.$route.params.id}});
             })
             .catch(err => {
