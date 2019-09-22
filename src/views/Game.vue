@@ -97,8 +97,13 @@ export default {
             );
             // Special Powers (Kann - Kriterien)
             this.connections.private.bind(
-                ''
+                'eliminate_player',
+                this.handleEliminatePlayer
             );
+            this.connetions.private.bind(
+                'policy_peek',
+                this.handlePolicyPeek
+            )
         },
         updateMembers() {
             let data = this.connections.presence.members;
@@ -160,6 +165,14 @@ export default {
         handleGameWon(e) {
             this.data = e;
             this.$router.push({ name: 'game-over', params: { id: this.$route.params.id } });
+        },
+        handleEliminatePlayer(e) {
+            this.data = e;
+            this.$router.push({ name: 'eliminate-player', params: { id: this.$route.params.id } });
+        },
+        handlePolicyPeek(e) {
+            this.data = e;
+            this.$router.push({ name: 'policy-peek', params: { id: this.$route.params.id } });
         }
     },
 
