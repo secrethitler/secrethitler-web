@@ -38,9 +38,17 @@ export default {
             window.removeEventListener('click', this.handleClick);
         },
         handleClick(e) {
-            if (e.target != this.$refs.modal) {
-                this.close();
+            let el = e.target;
+
+            while (el) {
+                if (e.target == this.$refs.modal) {
+                    return;
+                }
+
+                el = el.parentNode;
             }
+
+            this.close();
         }
     },
 };
