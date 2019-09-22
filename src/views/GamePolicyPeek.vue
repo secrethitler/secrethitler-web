@@ -7,11 +7,11 @@
             <div class="lg:w-1/2">
                 <h3 class="font-serif text-2xl mb-4">You may look at the top 3 policies from the card pile!</h3>
 
-                <div v-if="! showing" class="flex justify-center">
-                    <button class="btn" @click="showing = true">Show Policies</button>
+                <div v-if="policies.length == 0 && showing == false" class="flex justify-center">
+                    <button class="btn" @click="getPeekedPolicies">Show Policies</button>
                 </div>
 
-                <div v-if="showing" class="flex">
+                <div v-if="policies.length > 0" class="flex">
                     <div v-for="(policy, index) in policies" :key="index" class="px-2 w-full lg:w-1/3 mb-4">
                         <div v-if="policy == 'liberal'">
                             <img src="../assets/policy_liberal.jpg" alt="Liberal Policy">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
 
-                <div v-if="showing" class="flex justify-center py-4">
+                <div v-if="policies.length > 0" class="flex justify-center py-4">
                     <router-link class="btn shadow" :to="{ name: 'info', params: { id: $route.params.id } }">Back</router-link>
                 </div>
             </div>
@@ -41,8 +41,20 @@ export default {
         }
     },
 
-    created() {
-        this.policies = this.data.policies;
+    methods: {
+        getPeekedPolicies() {
+            this.showing = true;
+            this.$http.get('/policy/peek', {
+                params: { channelName: this.$route.params.id }
+            })
+            .then(res => {
+                this.policies = res.data.policies;
+            })
+            .catch(err => {
+                alert(err.message);
+                this.showing = false;
+            });
+        }
     }
 }
 </script>

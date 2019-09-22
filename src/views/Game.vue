@@ -97,8 +97,8 @@ export default {
             );
             // Special Powers (Kann - Kriterien)
             this.connections.private.bind(
-                'eliminate_player',
-                this.handleEliminatePlayer
+                'execute_player',
+                this.handleExecutePlayer
             );
             this.connetions.private.bind(
                 'policy_peek',
@@ -166,7 +166,7 @@ export default {
             this.data = e;
             this.$router.push({ name: 'game-over', params: { id: this.$route.params.id } });
         },
-        handleEliminatePlayer(e) {
+        handleExecutePlayer(e) {
             this.data = e;
             this.$router.push({ name: 'eliminate-player', params: { id: this.$route.params.id } });
         },
