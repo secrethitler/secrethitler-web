@@ -39,7 +39,6 @@ export default {
     methods: {
         show() {
             this.$refs.modal.show();
-            console.log(this.partyMembers);
         },
 
         hide() {

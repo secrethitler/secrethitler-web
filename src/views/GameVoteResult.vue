@@ -51,11 +51,7 @@ export default {
 
     methods: {
         getVoteForId(id) {
-            console.log(this.activeRound.votes);
-            console.log(id);
             let vote = this.activeRound.votes.find(vote => vote.user_id == id);
-
-            console.log(vote);
 
             return vote.voted_yes || false;
         }
