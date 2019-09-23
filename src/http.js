@@ -6,6 +6,9 @@ let instance = axios.create({
     baseURL: 'https://secrethitler.tk/api',
     // baseURL: 'https://geheimerdeutscher.tk/api',
     withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json'
+    }
 });
 
 instance.interceptors.request.use(config => {
@@ -16,7 +19,6 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(
     response => {
         nprogress.done();
-        console.log(response.headers);
         return response;
     },
     error => {
