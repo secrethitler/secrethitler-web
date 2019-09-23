@@ -100,7 +100,7 @@ export default {
                 'execute_player',
                 this.handleExecutePlayer
             );
-            this.connetions.private.bind(
+            this.connections.private.bind(
                 'policy_peek',
                 this.handlePolicyPeek
             );
