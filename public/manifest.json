@@ -3,12 +3,12 @@
   "short_name": "Secret Hitler",
   "icons": [
     {
-      "src": "./img/icons/bird@0,25.png",
+      "src": "./img/icons/bird_quarter.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-        "src": "./img/icons/bird@0,5.png",
+        "src": "./img/icons/bird_half.png",
         "sizes": "256x256",
         "type": "image/png"
       },
