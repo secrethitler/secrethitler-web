@@ -56,7 +56,7 @@ export default {
             this.eliminating = true;
             this.$http.post('/player/execute', {
                 channelName: this.$route.params.id,
-                userId: parseInt(id),
+                userId: id,
             })
             .then(res => {
                 this.$router.push({name: 'info', params: { id: this.$route.params.id}});

@@ -1,20 +1,25 @@
 {
-  "name": "secret-hitler",
-  "short_name": "secret-hitler",
+  "name": "Secret Hitler",
+  "short_name": "Secret Hitler",
   "icons": [
     {
-      "src": "./img/icons/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "./img/icons/bird@0,25.png",
+      "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "./img/icons/android-chrome-512x512.png",
+        "src": "./img/icons/bird@0,5.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      },
+    {
+      "src": "./img/icons/bird.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "background_color": "#f7fafc",
+  "theme_color": "#e53e3e"
 }
