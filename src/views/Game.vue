@@ -142,7 +142,7 @@ export default {
             this.$router.push({ name: 'nominate', params: {id: this.$route.params.id}});
         },
         handleChancellorNominated(e) {
-            this.setNominatedChancellor(e.chancellor_id);
+            this.setNominatedChancellor(e.chancellorId);
             this.$router.push({ name: 'vote', params: {id: this.$route.params.id} })
         },
         handleChancellorVote(e) {
