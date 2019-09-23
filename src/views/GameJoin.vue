@@ -45,12 +45,17 @@ export default {
         return {
             channelName: '',
             userName: '',
-            error: ''
+            error: '',
+            joining: false
         }
     },
 
     methods: {
         join() {
+            if (this.joining) {
+                return;
+            }
+            this.joining = true;
             this.$http
                 .post('/game/join', {
                     userName: this.userName,

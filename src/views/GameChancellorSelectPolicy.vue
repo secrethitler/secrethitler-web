@@ -6,18 +6,15 @@
         <div class="container flex justify-center">
             <div class="lg:w-1/2">
                 <div class="mb-4">
-                    <h3 class="font-serif text-2xl mb-4">Select a policy to discard.</h3>
-                    <p>
-                        The remaining policy will be enacted.
-                    </p>
+                    <h3 class="font-serif text-2xl mb-4">Select a policy to enact.</h3>
                 </div>
 
                 <div class="flex" :class="{ 'pointer-events-none': discarding, 'opacity-50': discarding }">
                     <div v-for="(policy, index) in policies" :key="index" class="px-2 w-full lg:w-1/2">
-                        <div v-if="policy == 'liberal'" @click="discard(policy)">
+                        <div v-if="policy == 'liberal'" @click="enact(index)">
                             <img src="../assets/policy_liberal.jpg" alt="Liberal Policy">
                         </div>
-                        <div v-if="policy == 'fascist'" @click="discard(policy)">
+                        <div v-if="policy == 'fascist'" @click="enact(index)">
                             <img src="../assets/policy_fascist.jpg" alt="Fascist Policy">
                         </div>
                     </div>
@@ -46,6 +43,11 @@ export default {
     },
 
     methods: {
+        enact(index) {
+            let discardedIndex = index == 0 ? 1 : 0;
+
+            this.discard(this.policies[discardedIndex]);
+        },
         discard(policy) {
             this.discarding = true;
             

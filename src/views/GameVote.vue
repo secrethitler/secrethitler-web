@@ -8,7 +8,7 @@
                 <div class="mb-4">
                     <h3 class="font-serif text-2xl mb-4">{{ chancellor.user_name || '' }} was nominated as chancellor.</h3>
                     <p>
-                        Do accept this nomination?
+                        Do you accept this nomination?
                     </p>
                 </div>
                 <div class="pt-6 flex justify-center" :class="{ 'opacity-50': hasVoted, 'pointer-events-none': hasVoted }">
