@@ -107,7 +107,11 @@ export default {
             this.connections.channel.bind(
                 'player_killed',
                 this.handlePlayerKilled
-            )
+            );
+            this.connections.private.bind(
+                'loyalty_investigation',
+                this.handleLoyaltyInvestigation
+            );
         },
         updateMembers() {
             let data = this.connections.presence.members;
@@ -184,6 +188,9 @@ export default {
             if (e.userId == this.userId) {
                 this.$router.push({ name: 'is-eliminated',  params: { id: this.$route.params.id } })
             }
+        },
+        handleLoyaltyInvestigation(e) {
+            this.$router.push({ name: 'investigate', params: { id: this.$route.params.id } });
         }
     },
 
