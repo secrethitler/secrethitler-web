@@ -54,7 +54,7 @@ export default {
     methods: {
         eliminate(id) {
             this.eliminating = true;
-            this.$http.post('/player/eliminate', {
+            this.$http.post('/player/execute', {
                 channelName: this.$route.params.id,
                 userId: id,
             })
