@@ -45,7 +45,8 @@ export default {
         getPeekedPolicies() {
             this.showing = true;
             this.$http.get('/policy/peek', {
-                params: { channelName: this.$route.params.id }
+                params: { channelName: this.$route.params.id },
+                data: {}
             })
             .then(res => {
                 this.policies = res.data.policies;
