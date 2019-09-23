@@ -95,7 +95,9 @@ export default {
         },
 
         killPlayer(state, id) {
-            state.killed.push(id);
+            state.killed.push(
+                parseInt(id)
+            );
             storage.set('killed', state.killed);
         }
     },
@@ -109,7 +111,10 @@ export default {
             return state.party_members || storage.get('party_members', []);
         },
         killed(state, getters) {
-            return state.killed;
+            return state.killed || storage.get('killed', []);
+        },
+        isKilled(state, getters) {
+            return getters.killed.includes(getters.userId);
         },
         userId(state) {
             return state.user_id || parseInt(storage.get('user_id'));

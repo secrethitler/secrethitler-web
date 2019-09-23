@@ -75,6 +75,11 @@ let routes = [
                 component: require('./views/GameKillPlayer.vue').default
             },
             {
+                path: 'is-eliminated',
+                name: 'is-eliminated',
+                component: require('./views/GameIsKilled.vue').default
+            },
+            {
                 path: 'policy-peek',
                 name: 'policy-peek',
                 component: require('./views/GamePolicyPeek.vue').default

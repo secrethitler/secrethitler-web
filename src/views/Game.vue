@@ -180,6 +180,10 @@ export default {
         },
         handlePlayerKilled(e) {
             this.$store.commit('killPlayer', e.userId);
+
+            if (e.userId == this.userId) {
+                this.$router.push({ name: 'is-eliminated',  params: { id: this.$route.params.id } })
+            }
         }
     },
 
