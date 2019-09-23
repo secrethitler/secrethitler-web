@@ -11,14 +11,14 @@
                 <div class="mt-8" :class="getClasses">
                     <ul>
                         <li
-                            v-for="player_id in data.killable"
-                            :key="player_id"
+                            v-for="player in killable"
+                            :key="player.user_id"
                             class="py-2 font-serif text-gray-700 cursor-pointer text-xl px-3 bg-white rounded shadow flex justify-between mb-2"
                         >
-                            <span>{{ getUserNameFromId(player_id) }}</span>
+                            <span>{{ player.user_name }}</span>
                             <button
                                 class="py-1 px-2 upeprcase text-sm bg-gray-200 text-gray-700 font-bold rounded tracking-wide hover:bg-red-500 hover:text-yellow-200"
-                                @click="eliminate(player_id)"
+                                @click="eliminate(player.user_id)"
                             >Eliminate</button>
                         </li>
                     </ul>
@@ -30,22 +30,21 @@
 
 <script>
 import storage from '../storage';
+import { mapGetters } from 'vuex';
 
 export default {
-    props: {
-        data: {
-            required: true,
-        },
-    },
 
     data() {
         return {
-            killable: [],
             eliminating: false
         }
     },
 
     computed: {
+        ...mapGetters(['members', 'userId']),
+        killable() {
+            return this.members.filter(member => member.user_id != this.userId);
+        },
         getClasses() {
             return this.eliminating
                 ? ['opacity-50', 'pointer-events-none'] : []
@@ -67,14 +66,6 @@ export default {
             });
         },
     },
-
-    created() {
-        if (this.data) {
-            storage.set('killable', this.data);
-        }
-
-        this.killable = this.data || storage.get('killable', []);
-    }
 };
 </script>
 
