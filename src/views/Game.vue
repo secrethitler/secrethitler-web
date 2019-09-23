@@ -135,7 +135,7 @@ export default {
         handleNextRound(e) {
             this.data = {};
             this.setNewRound();
-            this.setNewPresident(e.president_id);
+            this.setNewPresident(e.presidentId);
         },
         handleNotifyPresident(e) {
             this.data = e;

@@ -5,7 +5,7 @@
         </div>
         <div class="container flex justify-center py-16 px-8">
             <div class="max-w-4xl">
-                <img src="../../../assets/skull.png" alt="Skull">
+                <img src="../assets/skull.png" alt="Skull">
             </div>
         </div>
     </div>
