@@ -10,6 +10,7 @@ export default {
         members: [],
         rounds: [],
         killed: [],
+        election_tracker: 0,
         running: false,
     },
     mutations: {
@@ -76,6 +77,7 @@ export default {
             state.rounds = [];
             state.killed = [];
             state.running = false;
+            state.election_tracker = 0;
 
             storage.remove('channel_name');
             storage.remove('active_round');
@@ -83,6 +85,7 @@ export default {
             storage.remove('role');
             storage.remove('party_members');
             storage.remove('killed');
+            storage.remove('election_tracker');
         },
 
         startGame(state, event) {
@@ -99,7 +102,17 @@ export default {
                 parseInt(id)
             );
             storage.set('killed', state.killed);
-        }
+        },
+
+        incrementElectionTracker(state) {
+            state.election_tracker++;
+            storage.set('election_tracker', state.election_tracker);
+        },
+
+        resetElectionTracker(state) {
+            state.election_tracker = 0;
+            storage.set('election_tracker', state.election_tracker);
+        },
     },
     getters: {
         members(state, getters) {
@@ -133,6 +146,9 @@ export default {
         },
         channelName(state) {
             return state.channel_name;
+        },
+        electionTracker(state) {
+            return state.election_tracker || storage.get('election_tracker', 0);
         },
         isElected(state, getters) {
             return getters.activeRound.chancellor_elected;

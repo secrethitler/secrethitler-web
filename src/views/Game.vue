@@ -78,7 +78,11 @@ export default {
             this.connections.channel.bind(
                 'chancellor_elected',
                 this.handleChancellorElected
-            )
+            );
+            this.connections.channel.bind(
+                'election_tracker',
+                this.handleElectionTracker
+            );
             this.connections.private.bind(
                 'president_receive_policies',
                 this.handlePresidentReceivePolicies
@@ -158,10 +162,18 @@ export default {
         },
         handleChancellorElected(e) {
             this.$store.commit('setElected', e.elected);
+
+            if (! e.elected) {
+                this.$store.commit('incrementElectionTracker');
+            }
+
             if (! this.isPresident || ! e.elected) {
                 this.data = e;
                 this.$router.push({name: 'vote-result', params: { id: this.$route.params.id}});
             }
+        },
+        handleElectionTracker(e) {
+            this.$store.commit('resetElectionTracker');
         },
         handlePresidentReceivePolicies(e) {
             this.data = e;

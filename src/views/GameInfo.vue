@@ -26,13 +26,15 @@
             <div class="flex flex-col lg:flex-row">
                 <!-- Liberal Policies -->
                 <div>
-                    <div class="-mx-4 relative lg:px-8 mb-8 lg:mb-0">
+                    <div class="-mx-4 relative lg:px-8 mb-8 lg:mb-0 relative">
                         <img src="../assets/playfield_liberal_edited.jpg" alt />
                         <transition-group name="policy" class="liberal-policy-container">
                             <div v-for="index in liberal" :key="index" class="liberal-policy">
                                 <img src="../assets/policy_liberal.jpg" alt />
                             </div>
                         </transition-group>
+
+                        <ElectionTracker />
                     </div>
                 </div>
 
@@ -69,10 +71,12 @@
 <script>
 import { mapGetters } from 'vuex';
 import ShowRole from '../components/ShowRole.vue';
+import ElectionTracker from '../components/ElectionTracker.vue';
 
 export default {
     components: {
-        ShowRole
+        ShowRole,
+        ElectionTracker
     },
     data() {
         return {};
