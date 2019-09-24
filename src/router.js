@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from './store/index.js';
 
 Vue.use(Router);
 
@@ -98,8 +99,12 @@ let router = new Router({
     routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//     return next();
-// });
+router.beforeEach((to, from, next) => {
+    if (store.getters.isKilled) {
+        return;
+    }
+    
+    return next();
+});
 
 export default router;

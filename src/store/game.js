@@ -118,7 +118,7 @@ export default {
         members(state, getters) {
             let members = state.members.length > 0 ? state.members : storage.get('members', []);
 
-            return members.filter(member => ! getters.killed.includes(member.user_id));
+            return members.filter(member => ! getters.killed.includes(parseInt(member.user_id)));
         },
         partyMembers(state, getters) {
             return state.party_members || storage.get('party_members', []);
