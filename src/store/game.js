@@ -119,6 +119,8 @@ export default {
             let members = state.members.length > 0 ? state.members : storage.get('members', []);
             let killed = getters.killed;
 
+            console.log(killed);
+
             return members.filter(member => {
                 for (let i = 0; i < killed.length; i++) {
                     if (member.user_id == killed[i]) {
