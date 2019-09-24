@@ -58,7 +58,7 @@ export default {
     },
 
     methods: {
-        eliminate(id) {
+        investigate(id) {
             this.investigating = true;
             this.$http.get(`/investigate/${id}`, {
                 params: {
