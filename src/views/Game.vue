@@ -112,6 +112,10 @@ export default {
                 'loyalty_investigation',
                 this.handleLoyaltyInvestigation
             );
+            this.connections.private.bind(
+                'special_election',
+                this.handleSpecialElection
+            );
         },
         updateMembers() {
             let data = this.connections.presence.members;
@@ -191,6 +195,9 @@ export default {
         },
         handleLoyaltyInvestigation(e) {
             this.$router.push({ name: 'investigate', params: { id: this.$route.params.id } });
+        },
+        handleSpecialElection(e) {
+            this.$router.push({ name: 'special-election', params: { id: this.$route.params.id } })
         }
     },
 
