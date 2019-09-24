@@ -60,7 +60,7 @@ export default {
     methods: {
         investigate(id) {
             this.investigating = true;
-            this.$http.get(`/investigate/${id}`, {
+            this.$http.get(`/player/investigate/${id}`, {
                 params: {
                     channelName: this.$route.params.id,
                 },
