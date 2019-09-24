@@ -1,8 +1,7 @@
 <template>
     <div>
-        <div class="font-serif text-white py-4 lg:py-6 mb-8 bg-red-600">
-            <h1 class="text-3xl font-bold text-center">Nominate</h1>
-        </div>
+        <page-title>Nominate</page-title>
+        
         <div class="container flex justify-center">
             <div class="lg:w-1/2">
                 <h3 class="font-serif text-2xl mb-4">You are the new President!</h3>

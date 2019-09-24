@@ -1,8 +1,7 @@
 <template>
     <div>
-        <div class="font-serif text-white py-4 lg:py-6 mb-8 bg-red-600">
-            <h1 class="text-3xl font-bold text-center">Discard Policy</h1>
-        </div>
+        <page-title>Discard Policy</page-title>
+
         <div class="container flex justify-center">
             <div class="lg:w-1/2">
                 <div class="mb-4">

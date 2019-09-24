@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="font-serif text-white py-4 lg:py-6 mb-8 bg-red-600">
-            <h1 class="text-3xl font-bold text-center">Investiagte Player</h1>
+            <h1 class="text-3xl font-bold text-center">Investigate Player</h1>
         </div>
         <div class="container flex justify-center">
             <div class="lg:w-1/2">

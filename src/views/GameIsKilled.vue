@@ -1,8 +1,7 @@
 <template>
     <div>
-        <div class="font-serif text-white py-4 lg:py-6 mb-8 bg-red-600">
-            <h1 class="text-3xl font-bold text-center">You have been executed</h1>
-        </div>
+        <page-title>You have been executed</page-title>
+        
         <div class="container flex justify-center py-16 px-8">
             <div class="max-w-4xl">
                 <img src="../assets/skull.png" alt="Skull">
