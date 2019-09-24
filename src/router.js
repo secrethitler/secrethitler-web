@@ -75,6 +75,11 @@ let routes = [
                 component: require('./views/GameKillPlayer.vue').default
             },
             {
+                path: 'investigate',
+                name: 'investigate',
+                component: require('./views/GameInvestigate.vue').default
+            },
+            {
                 path: 'is-eliminated',
                 name: 'is-eliminated',
                 component: require('./views/GameIsKilled.vue').default
