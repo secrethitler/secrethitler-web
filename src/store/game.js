@@ -121,7 +121,7 @@ export default {
 
             return members.filter(member => {
                 for (let i = 0; i < killed.length; i++) {
-                    if (member.user_id == killd[i]) {
+                    if (member.user_id == killed[i]) {
                         return false;
                     }
                 }
