@@ -155,7 +155,9 @@ export default {
         },
         handleChancellorNominated(e) {
             this.setNominatedChancellor(e.chancellorId);
-            this.$router.push({ name: 'vote', params: {id: this.$route.params.id} })
+            if (! this.$store.isKilled) {
+                this.$router.push({ name: 'vote', params: {id: this.$route.params.id} })
+            }
         },
         handleChancellorVote(e) {
             this.addChancellorVote(e);

@@ -117,8 +117,17 @@ export default {
     getters: {
         members(state, getters) {
             let members = state.members.length > 0 ? state.members : storage.get('members', []);
+            let killed = getters.killed;
 
-            return members.filter(member => ! getters.killed.includes(parseInt(member.user_id)));
+            return members.filter(member => {
+                for (let i = 0; i < killed.length; i++) {
+                    if (member.user_id == killd[i]) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
         },
         partyMembers(state, getters) {
             return state.party_members || storage.get('party_members', []);
