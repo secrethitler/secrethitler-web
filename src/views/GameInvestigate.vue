@@ -28,7 +28,7 @@
                     <div class="flex justify-center py-12">
                         <div class="max-w-xl">
                             <img v-if="membership == 'liberal'" src="../assets/membership_liberal.jpg" alt="Liberal Membership">
-                            <img v-if="membership == 'fascist'" src="../assets/membershipfascist.jpg" alt="Fascist Membership">
+                            <img v-if="membership == 'fascist'" src="../assets/membership_fascist.jpg" alt="Fascist Membership">
                         </div>
                     </div>
                 </div>
