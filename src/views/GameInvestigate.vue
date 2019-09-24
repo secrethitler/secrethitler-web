@@ -27,9 +27,24 @@
                 <div v-if="investigating && this.membership != ''">
                     <div class="flex justify-center py-12">
                         <div class="max-w-xl">
-                            <img v-if="membership == 'liberal'" src="../assets/membership_liberal.jpg" alt="Liberal Membership">
-                            <img v-if="membership == 'fascist'" src="../assets/membership_fascist.jpg" alt="Fascist Membership">
+                            <img
+                                v-if="membership == 'liberal'"
+                                src="../assets/membership_liberal.jpg"
+                                alt="Liberal Membership"
+                            />
+                            <img
+                                v-if="membership == 'fascist'"
+                                src="../assets/membership_fascist.jpg"
+                                alt="Fascist Membership"
+                            />
                         </div>
+                    </div>
+
+                    <div class="flex justify-center py-4">
+                        <router-link
+                            class="btn shadow"
+                            :to="{ name: 'info', params: { id: $route.params.id } }"
+                        >Back</router-link>
                     </div>
                 </div>
             </div>
@@ -42,37 +57,37 @@ import storage from '../storage';
 import { mapGetters } from 'vuex';
 
 export default {
-
     data() {
         return {
             investigating: false,
-            membership: ''
-        }
+            membership: '',
+        };
     },
 
     computed: {
         ...mapGetters(['members', 'userId']),
         investigateable() {
             return this.members.filter(member => member.user_id != this.userId);
-        }
+        },
     },
 
     methods: {
         investigate(id) {
             this.investigating = true;
-            this.$http.get(`/player/investigate/${id}`, {
-                params: {
-                    channelName: this.$route.params.id,
-                },
-                data: {}
-            })
-            .then(res => {
-                this.membership = res.data.party;
-            })
-            .catch(err => {
-                alert(err.message);
-                this.investigating = false;
-            });
+            this.$http
+                .get(`/player/investigate/${id}`, {
+                    params: {
+                        channelName: this.$route.params.id,
+                    },
+                    data: {},
+                })
+                .then(res => {
+                    this.membership = res.data.party;
+                })
+                .catch(err => {
+                    alert(err.message);
+                    this.investigating = false;
+                });
         },
     },
 };
