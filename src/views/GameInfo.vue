@@ -3,7 +3,7 @@
         <page-title>Policies</page-title>
 
         <div class="container">
-            <h3 class="mb-2">
+            <h3 v-if="rounds.length > 0" class="mb-2 text-center font-old text-2xl">
                 Round {{ rounds.length }}
             </h3>
             <!-- President and Chancellor -->

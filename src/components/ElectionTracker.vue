@@ -1,5 +1,5 @@
 <template>
-    <div class="election-tracker absolute bottom-0 left-0 right-0 py-4">
+    <div class="election-tracker absolute bottom-0 left-0 right-0">
         <div class="relative">
             <div class="cross" :style="getStyle">
                 <span></span>
@@ -25,8 +25,10 @@ export default {
 
 <style lang="scss" scoped>
     .election-tracker {
-        padding-left: 30%;
-        padding-right: 30%;
+        padding-left: 27%;
+        padding-right: 27%;
+        padding-top: 3%;
+        padding-bottom: 3%;
 
         .cross {
             height: 1rem;
