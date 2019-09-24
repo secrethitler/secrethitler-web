@@ -93,8 +93,8 @@ let router = new Router({
     routes,
 });
 
-router.beforeEach((to, from) => {
-    //  
-});
+// router.beforeEach((to, from, next) => {
+//     return next();
+// });
 
 export default router;
