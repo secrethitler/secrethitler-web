@@ -99,12 +99,4 @@ let router = new Router({
     routes,
 });
 
-router.beforeEach((to, from, next) => {
-    if (store.getters.isKilled) {
-        return;
-    }
-    
-    return next();
-});
-
 export default router;
