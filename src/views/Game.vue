@@ -17,7 +17,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['connections', 'members', 'userId', 'isPresident', 'channelName']),
+        ...mapGetters(['connections', 'members', 'userId', 'isPresident', 'channelName', 'isKilled']),
     },
 
     methods: {
@@ -155,7 +155,7 @@ export default {
         },
         handleChancellorNominated(e) {
             this.setNominatedChancellor(e.chancellorId);
-            if (! this.$store.isKilled) {
+            if (! this.isKilled) {
                 this.$router.push({ name: 'vote', params: {id: this.$route.params.id} })
             }
         },
